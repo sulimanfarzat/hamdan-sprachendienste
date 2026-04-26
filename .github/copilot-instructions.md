@@ -1,0 +1,4 @@
+- [x] Projekt initialisiert mit Next.js 15, TypeScript, Tailwind CSS, App Router und ESLint.
+- [ ] Tailwind Farbpalette und Grundlayout anpassen.
+- [ ] Navigation und Hero-Sektion entwerfen.
+- [ ] Startseite gestalten.
