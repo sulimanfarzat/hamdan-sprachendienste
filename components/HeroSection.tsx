@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const HeroSection: FC = () => {
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-[60vh] w-full px-6 py-20 bg-gradient-to-br from-background via-silver/40 to-accent/10 overflow-hidden rounded-xl mt-8 shadow-glow">
+    <section className="relative flex flex-col items-center justify-center min-h-[60vh] w-full px-6 py-20 gradient-bg overflow-hidden rounded-xl mt-8 shadow-glow">
       {/* Mesh/Glow Effekt */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute left-1/2 top-1/3 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/30 blur-3xl opacity-60" />
@@ -26,6 +26,14 @@ const HeroSection: FC = () => {
         className="mt-6 max-w-2xl text-lg md:text-2xl text-silver text-center"
       >
         Übersetzungen, Dolmetschen & Beratung für Behörden, Gerichte und Unternehmen – zuverlässig, zertifiziert und international.
+      </motion.p>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.3, ease: "easeOut" }}
+        className="mt-2 max-w-xl text-base md:text-xl text-accent font-semibold text-center"
+      >
+        Wir bringen Sprachen zusammen.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, y: 10 }}

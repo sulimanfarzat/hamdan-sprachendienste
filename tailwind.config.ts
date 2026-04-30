@@ -10,11 +10,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#1e293b', // Slate 800
-        accent: '#0ea5e9', // Sky 500
-        background: '#f8fafc', // Soft background
-        gold: '#eab308', // Elegant Gold
-        silver: '#cbd5e1', // Cool Silver-Grey
+        primary: '#8BB917', // Grün
+        accent: '#0099CC', // Blau
+        black: '#000000',
+        background: '#f8fafc', // Optional: kann angepasst werden
+        gold: '#eab308', // Optional: falls noch genutzt
+        silver: '#cbd5e1', // Optional: falls noch genutzt
       },
       borderRadius: {
         lg: '1rem',
