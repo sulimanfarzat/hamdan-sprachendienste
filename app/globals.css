@@ -1,6 +1,49 @@
 @import "tailwindcss";
 
-/* Gradient-Background Utility */
-.gradient-bg {
-  background: linear-gradient(90deg, #8BB917 0%, #0099CC 50%, #000000 100%);
+/* Class-based dark mode: .dark on <html> activates dark: variants */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   DESIGN SYSTEM — Tailwind v4 CSS-first configuration
+   Colors defined here generate bg-*, text-*, border-* utilities
+   Fonts use @theme inline because they reference CSS variables
+   injected by next/font/google at build time
+   ============================================================ */
+
+@theme {
+  /* Navy */
+  --color-navy:       #0A1628;
+  --color-navy-light: #132040;
+  --color-navy-dark:  #060E1A;
+
+  /* Gold */
+  --color-gold:       #C8A96E;
+  --color-gold-light: #D4BA85;
+  --color-gold-dark:  #A8894E;
+
+  /* Cream */
+  --color-cream:      #F7F5F0;
+  --color-cream-dark: #EAE7E0;
+
+  /* Muted */
+  --color-muted:      #8A8A99;
+}
+
+/* Font families reference CSS variables injected by next/font */
+@theme inline {
+  --font-display: var(--font-playfair);
+  --font-body:    var(--font-dm-sans);
+  --font-mono:    var(--font-dm-mono);
+}
+
+/* ── Hero entrance keyframes ──────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* scaleX avoids layout recalc; origin-left is set on the element */
+@keyframes expandWidth {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }

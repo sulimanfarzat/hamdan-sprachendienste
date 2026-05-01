@@ -1,38 +1,140 @@
+import type { Metadata } from "next";
+import FadeIn from "../../components/ui/FadeIn";
+
+export const metadata: Metadata = {
+  title: "Impressum – Hamdan Sprachendienste",
+  description: "Impressum und rechtliche Angaben von Hamdan Sprachendienste.",
+};
+
 export default function ImpressumPage() {
   return (
-    <section className="max-w-3xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold text-primary dark:text-silver mb-8 text-center">Impressum</h1>
-      <div className="prose prose-sm max-w-none dark:prose-invert">
-        <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-        <p><strong>Büro Dresden:</strong><br />
-        HAMDAN SPRACHENDIENSTE<br />
-        Agnes-Smedley-Str. 7<br />
-        <em>01187</em> Dresden<br />
-        Inhaber: Khaled Hamdan</p>
-        <p><strong>Büro Mannheim:</strong><br />
-        HAMDAN SPRACHENDIENSTE<br />
-        Spinozastraße 5<br />
-        68165 Mannheim</p>
-        <p><strong>Kontakt:</strong><br />
-        Telefon: <em>+49 (0)17684558344</em><br />
-        FAX: 0321 21 12 24 43<br />
-        E-Mail: info@hamdan-sprachendienste.de</p>
-        <p>Bundeseinheitliche Steuernummer: 3203022722681<br />
-        USt.-IdNr.: DE327119888</p>
-        <p><strong>Aufsichtsbehörde:</strong></p>
-        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="http://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">http://ec.europa.eu/consumers/odr</a></p>
-        <p>Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
-        <p>Umsatzsteuer-Identifikationsnummer gemäß § <em>27</em>a Umsatzsteuergesetz: <em>73594236812</em></p>
-        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-        <p><strong>Haftung für Inhalte:</strong><br />
-        Als Dienstanbieter sind wir gemäß § <em>7</em> Abs. <em>1</em> TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ <em>8</em> bis <em>10</em> TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.<br />
-        Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</p>
-        <p><strong>Haftung für Links:</strong><br />
-        Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
-        <p><strong>Urheberrecht:</strong><br />
-        Die durch Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads sowie Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis.</p>
-        <p>Erstellt wurde die Webseite von <a href="http://www.deinelobby.com/" target="_blank" rel="noopener noreferrer">www.deinelobby.com</a></p>
-        <p><em>Quelle: https://www.e-recht24.de/impressum-generator.html</em></p>
+    <section className="w-full min-h-screen bg-cream dark:bg-navy transition-colors duration-300">
+      <div className="max-w-3xl mx-auto px-6 py-32">
+
+        {/* Header */}
+        <FadeIn>
+          <p className="font-mono text-gold text-sm uppercase tracking-[0.25em] mb-3">
+            Rechtliches
+          </p>
+          <h1 className="font-display text-5xl md:text-6xl text-navy dark:text-white mb-6 leading-tight">
+            Impressum
+          </h1>
+          <div className="w-16 h-[2px] bg-gold mb-12" />
+        </FadeIn>
+
+        <FadeIn delay={100}>
+          <div className="space-y-10 font-body text-navy/80 dark:text-cream/80 leading-relaxed">
+
+            {/* Angaben */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">
+                Angaben gemäß § 5 TMG
+              </h2>
+              <div className="space-y-6 text-sm">
+                <div>
+                  <p className="font-semibold text-navy dark:text-white mb-1">Büro Dresden</p>
+                  <p>HAMDAN SPRACHENDIENSTE<br />
+                  Agnes-Smedley-Str. 7<br />
+                  01187 Dresden<br />
+                  Inhaber: Khaled Hamdan</p>
+                </div>
+                <div>
+                  <p className="font-semibold text-navy dark:text-white mb-1">Büro Mannheim</p>
+                  <p>HAMDAN SPRACHENDIENSTE<br />
+                  Spinozastraße 5<br />
+                  68165 Mannheim</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Kontakt */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">Kontakt</h2>
+              <div className="text-sm space-y-1">
+                <p>Telefon: +49 (0) 176 84558344</p>
+                <p>Fax: 0321 21 12 24 43</p>
+                <p>E-Mail: info@hamdan-sprachendienste.de</p>
+              </div>
+            </div>
+
+            {/* Steuer */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">Steuerliche Angaben</h2>
+              <div className="text-sm space-y-1">
+                <p>Bundeseinheitliche Steuernummer: 3203022722681</p>
+                <p>USt.-IdNr.: DE327119888</p>
+              </div>
+            </div>
+
+            {/* Streitbeilegung */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">
+                Online-Streitbeilegung
+              </h2>
+              <p className="text-sm">
+                Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung
+                (OS) bereit:{" "}
+                <a
+                  href="http://ec.europa.eu/consumers/odr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gold hover:text-gold-light underline underline-offset-2 transition-colors duration-200"
+                >
+                  ec.europa.eu/consumers/odr
+                </a>
+                . Wir sind nicht bereit oder verpflichtet, an
+                Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+                teilzunehmen.
+              </p>
+            </div>
+
+            {/* Haftung Inhalte */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">
+                Haftung für Inhalte
+              </h2>
+              <p className="text-sm">
+                Als Dienstanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte
+                auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
+                §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
+                verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
+                überwachen oder nach Umständen zu forschen, die auf eine
+                rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung
+                oder Sperrung der Nutzung von Informationen nach den allgemeinen
+                Gesetzen bleiben hiervon unberührt.
+              </p>
+            </div>
+
+            {/* Haftung Links */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">
+                Haftung für Links
+              </h2>
+              <p className="text-sm">
+                Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren
+                Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten
+                Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+                Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links
+                umgehend entfernen.
+              </p>
+            </div>
+
+            {/* Urheberrecht */}
+            <div>
+              <h2 className="font-display text-navy dark:text-white text-xl mb-4">
+                Urheberrecht
+              </h2>
+              <p className="text-sm">
+                Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen
+                Seiten unterliegen dem deutschen Urheberrecht. Downloads und Kopien
+                dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch
+                gestattet.
+              </p>
+            </div>
+
+          </div>
+        </FadeIn>
+
       </div>
     </section>
   );

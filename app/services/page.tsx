@@ -1,10 +1,12 @@
 import ServicesSection from "../../components/ServicesSection";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Services – Hamdan Sprachendienste",
+  description:
+    "Professionelles Dolmetschen & Übersetzen: Dolmetscher vor Ort, Urkundenübersetzung, Beglaubigung, Event- und Konferenz-Übersetzung sowie Online Dolmetschen.",
+};
 
 export default function ServicesPage() {
-  return (
-    <section className="max-w-7xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold text-primary dark:text-silver mb-8 text-center">Unsere Leistungen</h1>
-      <ServicesSection />
-    </section>
-  );
+  return <ServicesSection />;
 }
