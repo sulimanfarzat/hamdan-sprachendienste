@@ -9,16 +9,16 @@ import { useLanguage } from "./LanguageProvider";
    schweben sichtbar in Position, Rotation und Opazität. Alle Klassen sind
    Literals, damit Tailwind sie beim Build-Scan erkennt.                  */
 const glyphs: { ch: string; className: string }[] = [
-  { ch: "ä",  className: "top-[10%]    left-[6%]     text-5xl md:text-7xl animate-[drift_7s_ease-in-out_infinite]        [--drift-opacity:0.38]" },
-  { ch: "ا",  className: "top-[12%]    right-[8%]    text-6xl md:text-8xl animate-[driftAlt_9s_ease-in-out_1s_infinite]  [--drift-opacity:0.36]" },
-  { ch: "ö",  className: "top-[68%]    left-[5%]     text-5xl md:text-7xl animate-[drift_10s_ease-in-out_3s_infinite]    [--drift-opacity:0.34]" },
-  { ch: "ب",  className: "top-[70%]    right-[6%]    text-5xl md:text-7xl animate-[driftAlt_8s_ease-in-out_2s_infinite]  [--drift-opacity:0.36]" },
-  { ch: "ü",  className: "top-[40%]    left-[3%]     text-4xl md:text-6xl animate-[drift_9s_ease-in-out_4s_infinite]     [--drift-opacity:0.32]" },
-  { ch: "ل",  className: "top-[44%]    right-[4%]    text-5xl md:text-7xl animate-[driftAlt_11s_ease-in-out_2s_infinite] [--drift-opacity:0.34]" },
-  { ch: "ß",  className: "bottom-[10%] left-[22%]    text-4xl md:text-6xl animate-[drift_12s_ease-in-out_5s_infinite]    [--drift-opacity:0.30]" },
-  { ch: "م",  className: "bottom-[12%] right-[22%]   text-4xl md:text-6xl animate-[driftAlt_10s_ease-in-out_3s_infinite] [--drift-opacity:0.30]" },
-  { ch: "ن",  className: "top-[28%]    left-[20%]    text-3xl md:text-5xl animate-[drift_8s_ease-in-out_6s_infinite]     [--drift-opacity:0.26]" },
-  { ch: "ر",  className: "top-[32%]    right-[22%]   text-3xl md:text-5xl animate-[driftAlt_9s_ease-in-out_4s_infinite]  [--drift-opacity:0.26]" },
+  { ch: "ä",  className: "top-[10%]    left-[6%]     text-5xl md:text-7xl animate-[drift_7s_ease-in-out_infinite]        [--drift-opacity:0.16]" },
+  { ch: "ا",  className: "top-[12%]    right-[8%]    text-6xl md:text-8xl animate-[driftAlt_9s_ease-in-out_1s_infinite]  [--drift-opacity:0.15]" },
+  { ch: "ö",  className: "top-[68%]    left-[5%]     text-5xl md:text-7xl animate-[drift_10s_ease-in-out_3s_infinite]    [--drift-opacity:0.14]" },
+  { ch: "ب",  className: "top-[70%]    right-[6%]    text-5xl md:text-7xl animate-[driftAlt_8s_ease-in-out_2s_infinite]  [--drift-opacity:0.15]" },
+  { ch: "ü",  className: "top-[40%]    left-[3%]     text-4xl md:text-6xl animate-[drift_9s_ease-in-out_4s_infinite]     [--drift-opacity:0.13]" },
+  { ch: "ل",  className: "top-[44%]    right-[4%]    text-5xl md:text-7xl animate-[driftAlt_11s_ease-in-out_2s_infinite] [--drift-opacity:0.14]" },
+  { ch: "ß",  className: "bottom-[10%] left-[22%]    text-4xl md:text-6xl animate-[drift_12s_ease-in-out_5s_infinite]    [--drift-opacity:0.10]" },
+  { ch: "م",  className: "bottom-[12%] right-[22%]   text-4xl md:text-6xl animate-[driftAlt_10s_ease-in-out_3s_infinite] [--drift-opacity:0.10]" },
+  { ch: "ن",  className: "top-[28%]    left-[20%]    text-3xl md:text-5xl animate-[drift_8s_ease-in-out_6s_infinite]     [--drift-opacity:0.07]" },
+  { ch: "ر",  className: "top-[32%]    right-[22%]   text-3xl md:text-5xl animate-[driftAlt_9s_ease-in-out_4s_infinite]  [--drift-opacity:0.05]" },
 ];
 
 const HeroSection: FC = () => {
