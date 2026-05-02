@@ -11,8 +11,9 @@ const Navbar: FC = () => {
   const [scrolled,  setScrolled]  = useState(false);
   const [menuOpen,  setMenuOpen]  = useState(false);
   const { theme, toggle: toggleTheme, mounted } = useTheme();
-  const { dict, toggle: toggleLang } = useLanguage();
+  const { dict, locale, toggle: toggleLang } = useLanguage();
   const t = dict.nav;
+  const isRtl = locale === "ar";
 
   const navLinks = [
     { href: "/#start",      label: t.links.start },
@@ -52,10 +53,10 @@ const Navbar: FC = () => {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolledBg}`}>
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <nav className="mx-auto flex max-w-7xl items-center gap-8 px-6 py-4">
 
           {/* Logo */}
-          <Link href="/" aria-label={t.homeAria}>
+          <Link href="/" aria-label={t.homeAria} className="shrink-0 mr-2">
             <Image
               src="/logo.png"
               alt="Hamdan Sprachendienste"
@@ -66,28 +67,8 @@ const Navbar: FC = () => {
             />
           </Link>
 
-          {/* Desktop links */}
-          <ul className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`font-body text-sm uppercase tracking-wider transition-all duration-300 ${linkColor}`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-
-            <li>
-              <Link
-                href="/kontakt"
-                className="font-body bg-gold text-navy text-sm font-semibold px-5 py-2.5 uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
-              >
-                {t.cta}
-              </Link>
-            </li>
-
+          {/* Lang + Theme toggles – LTR: ganz rechts | RTL: ganz links */}
+          <ul className={`hidden md:flex items-center gap-2 ${isRtl ? "order-last mr-auto" : "ml-auto order-last"}`}>
             {/* Language Toggle */}
             <li>
               <button
@@ -116,6 +97,20 @@ const Navbar: FC = () => {
                 {mounted && theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             </li>
+          </ul>
+
+          {/* Desktop links – LTR: links neben Logo | RTL: neben Logo rechts */}
+          <ul className={`hidden md:flex items-center gap-8`}>
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`font-body text-sm uppercase tracking-wider transition-all duration-300 ${linkColor}`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
 
           {/* Mobile: lang + theme + hamburger */}
