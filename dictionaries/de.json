@@ -1,0 +1,287 @@
+{
+  "meta": {
+    "name": "Deutsch",
+    "code": "de",
+    "dir": "ltr",
+    "switchTo": "AR"
+  },
+  "nav": {
+    "links": {
+      "start": "Start",
+      "services": "Services",
+      "uebersetzen": "Übersetzen",
+      "branchen": "Branchen",
+      "referenzen": "Referenzen",
+      "kontakt": "Kontakt",
+      "about": "About"
+    },
+    "cta": "Anfragen",
+    "lightMode": "Lichtmodus aktivieren",
+    "darkMode": "Dunkelmodus aktivieren",
+    "menuOpen": "Menü öffnen",
+    "menuClose": "Menü schließen",
+    "switchLanguage": "Sprache wechseln",
+    "homeAria": "Hamdan Sprachendienste – Startseite"
+  },
+  "hero": {
+    "eyebrow": "Professionelle Sprachdienstleistungen",
+    "headlinePart1": "Wir bringen",
+    "headlineHighlight": "Sprachen",
+    "headlinePart2": "zusammen.",
+    "subtitle": "Dolmetschen & Übersetzen für Gerichte, Behörden und Unternehmen – kompetent, zuverlässig, beglaubigt.",
+    "subtitleSmall": "In Dresden, Mannheim und bundesweit.",
+    "ctaPrimary": "Unverbindlich anfragen",
+    "ctaSecondary": "Unsere Leistungen",
+    "scroll": "Scrollen"
+  },
+  "services": {
+    "label": "Services",
+    "heading": "Unsere Leistungen",
+    "subtitle": "Maßgeschneiderte Sprachdienstleistungen für jeden Bedarf",
+    "items": [
+      { "title": "Dolmetscher vor Ort",       "desc": "Persönlicher Einsatz bei Verhandlungen, Behördenterminen und geschäftlichen Besprechungen – präzise und diskret." },
+      { "title": "Urkundenübersetzung",        "desc": "Beglaubigte Übersetzung von Urkunden, Zeugnissen und offiziellen Dokumenten für Behörden und Ämter." },
+      { "title": "Beglaubigung",               "desc": "Rechtssichere beglaubigte Übersetzungen mit staatlicher Anerkennung – anerkannt vor Gerichten und Behörden." },
+      { "title": "Event-Übersetzung",          "desc": "Professionelle Sprachunterstützung bei Messen, Empfängen und kulturellen Veranstaltungen jeder Größe." },
+      { "title": "Konferenz-Übersetzung",      "desc": "Simultan- und Konsekutivdolmetschen für internationale Konferenzen, Symposien und Podiumsdiskussionen." },
+      { "title": "Online Dolmetschen",         "desc": "Flexibles Remote-Dolmetschen per Video- und Telefonkonferenz – ortsunabhängig und technisch zuverlässig." }
+    ]
+  },
+  "trust": {
+    "label": "Referenzen",
+    "heading": "Vertrauen in jeder Sprache",
+    "subtitle": "Von Gerichten bis zu internationalen Unternehmen",
+    "items": [
+      { "title": "Gericht",            "desc": "Als vereidigter Dolmetscher berechtigt vor Gericht – zugelassen für Straf-, Zivil- und Verwaltungsverfahren." },
+      { "title": "Unternehmen",        "desc": "Zahlreiche Unternehmen vertrauen auf unsere Expertise – von KMU bis Konzern, national und international." },
+      { "title": "Behörden & Polizei", "desc": "Verlässliche Unterstützung von Behörden und Polizei beim Dolmetschen – nach höchsten Standards und mit vollständiger Diskretion." }
+    ]
+  },
+  "contact": {
+    "label": "Kontakt",
+    "heading": "Unverbindlich anfragen",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "optional": "(optional)",
+      "subject": "Anliegen",
+      "subjectPlaceholder": "Bitte auswählen …",
+      "subjects": [
+        "Dolmetschen vor Ort",
+        "Beglaubigte Übersetzung",
+        "Urkundenübersetzung",
+        "Konferenz-Dolmetschen",
+        "Online-Dolmetschen",
+        "Fachübersetzung",
+        "Allgemeine Anfrage"
+      ],
+      "message": "Nachricht",
+      "messagePlaceholder": "Beschreiben Sie Ihr Anliegen …",
+      "namePlaceholder": "Ihr vollständiger Name",
+      "emailPlaceholder": "ihre@email.de",
+      "phonePlaceholder": "+49 …",
+      "consent": "Ich willige in die Verarbeitung meiner Angaben gemäß der",
+      "consentLink": "Datenschutzerklärung",
+      "consentSuffix": "ein.",
+      "submitIdle": "Anfrage senden",
+      "submitting": "Wird gesendet …",
+      "successTitle": "Ihre Nachricht wurde gesendet.",
+      "successDesc": "Wir antworten in der Regel innerhalb von 24 Stunden.",
+      "errorTitle": "Senden fehlgeschlagen",
+      "errorTransport": "Verbindungsfehler. Bitte versuchen Sie es später erneut.",
+      "errorContact": "Sie können uns auch direkt unter",
+      "errorContactSuffix": "erreichen.",
+      "honeypotLabel": "Website (nicht ausfüllen)"
+    },
+    "info": {
+      "dresden": "Dresden",
+      "dresdenStreet": "Agnes-Smedley-Straße 7",
+      "dresdenCity": "01187 Dresden",
+      "mannheim": "Mannheim",
+      "mannheimStreet": "Spinozastr. 5",
+      "mannheimCity": "68165 Mannheim",
+      "phoneAria": "Anrufen",
+      "emailAria": "E-Mail senden"
+    }
+  },
+  "footer": {
+    "brandTop": "Hamdan",
+    "brandBottom": "Sprachendienste",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutzerklärung",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "steps": {
+    "label": "So einfach geht's",
+    "heading": "In 4 Schritten zur beglaubigten Übersetzung",
+    "items": [
+      { "title": "Unterlagen hochladen",         "desc": "Senden Sie uns Foto oder Scan Ihrer Dokumente bequem über das Formular." },
+      { "title": "Angebot erhalten",             "desc": "Innerhalb von 24 Stunden erhalten Sie ein unverbindliches Festpreisangebot." },
+      { "title": "Übersetzung & Beglaubigung",   "desc": "Vereidigte Fachübersetzer fertigen die beglaubigte Übersetzung rechtssicher an." },
+      { "title": "Lieferung",                    "desc": "Sie erhalten das Original per Post — auf Wunsch zusätzlich digital als PDF." }
+    ]
+  },
+  "quote": {
+    "label": "Angebot anfordern",
+    "heading": "Unterlagen einreichen",
+    "intro": "Füllen Sie das Formular aus und laden Sie Ihre Dokumente hoch. Wir melden uns innerhalb von",
+    "intro24h": "24 Stunden",
+    "introTail": "mit einem unverbindlichen Festpreisangebot.",
+    "section1": "1 — Persönliche Daten",
+    "section2": "2 — Sprachen & Dokument",
+    "section3": "3 — Unterlagen hochladen",
+    "section4": "4 — Anmerkungen",
+    "name": "Vor- & Nachname",
+    "namePh": "Max Mustermann",
+    "email": "E-Mail",
+    "emailPh": "ihre@email.de",
+    "phone": "Telefon",
+    "phonePh": "+49 …",
+    "address": "Lieferadresse für Originale",
+    "addressPh": "Straße, PLZ, Ort",
+    "sourceLang": "Ausgangssprache",
+    "targetLang": "Zielsprache",
+    "selectPh": "Bitte auswählen …",
+    "documentType": "Art des Dokuments",
+    "pages": "Anzahl Seiten ca.",
+    "deadline": "Wunschtermin",
+    "certifiedTitle": "Beglaubigung erforderlich",
+    "certifiedDesc": "Amtlich anerkannt für Behörden & Gerichte",
+    "expressTitle": "Express-Bearbeitung",
+    "expressDesc": "Schnellere Lieferung gegen Aufpreis",
+    "uploadHeading": "Dateien hierher ziehen oder klicken",
+    "uploadDesc": "PDF · JPG · PNG · DOC · DOCX · HEIC — bis 10 MB pro Datei, max. {max} Dateien",
+    "filesCount": "{n} / {max} Dateien",
+    "filesSize": "{used} / 30 MB",
+    "removeFile": "{name} entfernen",
+    "fileTooMany": "Maximal {max} Dateien erlaubt.",
+    "fileFormat": "Format „{ext}\" wird nicht unterstützt.",
+    "fileSize": "„{name}\" überschreitet 10 MB.",
+    "fileTotal": "Gesamtgröße überschreitet 30 MB.",
+    "fileMissing": "Bitte laden Sie mindestens ein Dokument hoch.",
+    "notesPh": "Besonderheiten, Verwendungszweck (z. B. Standesamt, Visumantrag), Fragen …",
+    "consent": "Ich willige in die Verarbeitung meiner Angaben und die hochgeladenen Unterlagen gemäß der",
+    "consentLink": "Datenschutzerklärung",
+    "consentSuffix": "ein. Die Daten werden ausschließlich zur Bearbeitung meiner Anfrage genutzt.",
+    "submitIdle": "Angebot kostenlos anfordern",
+    "submitting": "Wird gesendet …",
+    "successTitle": "Vielen Dank für Ihre Anfrage!",
+    "successDesc": "Wir haben Ihre Unterlagen erhalten und melden uns innerhalb von 24 Stunden mit einem Festpreisangebot.",
+    "errorTitle": "Senden fehlgeschlagen",
+    "errorTransport": "Verbindungsfehler. Bitte versuchen Sie es später erneut.",
+    "errorContact": "Schreiben Sie uns alternativ direkt an",
+    "languages": [
+      "Deutsch", "Englisch", "Arabisch", "Französisch", "Spanisch",
+      "Italienisch", "Russisch", "Türkisch", "Polnisch", "Persisch (Farsi)",
+      "Niederländisch", "Portugiesisch", "Tschechisch", "Ungarisch",
+      "Chinesisch", "Japanisch", "Koreanisch", "Urdu", "Hindi",
+      "Andere Sprache"
+    ],
+    "documentTypes": [
+      "Geburtsurkunde", "Heiratsurkunde", "Scheidungsurteil",
+      "Zeugnis / Diplom", "Führerschein", "Reisepass / Personalausweis",
+      "Vertrag", "Notarielle Urkunde", "Medizinischer Befund",
+      "Handelsregisterauszug", "Sonstige Urkunde"
+    ]
+  },
+  "pages": {
+    "about": {
+      "label": "About",
+      "heading": "Hamdan Sprachendienste",
+      "highlights": [
+        "Langjährige Erfahrung in verschiedenen Branchen",
+        "Zertifizierte und vereidigte Fachkräfte",
+        "Vertraulicher Umgang mit sensiblen Dokumenten",
+        "Internationale Ausrichtung und interkulturelle Kompetenz"
+      ],
+      "para1Bold": "Hamdan Sprachendienste",
+      "para1": "steht für professionelle, zertifizierte und zuverlässige Sprachdienstleistungen. Unser Team besteht aus erfahrenen und vereidigten Übersetzerinnen und Dolmetschern, die höchste Qualitätsstandards erfüllen und sich durch Diskretion und Präzision auszeichnen.",
+      "para2": "Wir unterstützen Behörden, Gerichte, Unternehmen und Privatpersonen bei allen sprachlichen Herausforderungen – von Fachübersetzungen und Beglaubigungen bis hin zu Dolmetsch-Einsätzen und individueller Sprachberatung.",
+      "closing": "Unser Anspruch ist es, Sprachbarrieren abzubauen und eine reibungslose Kommunikation auf höchstem Niveau zu ermöglichen. Vertrauen Sie auf unsere Expertise –",
+      "slogan": "wir bringen Sprachen zusammen.",
+      "cta": "Kontakt aufnehmen"
+    },
+    "kontakt": {
+      "label": "Kontaktieren Sie uns",
+      "heading": "Sprechen Sie mit uns",
+      "intro1Pre": "Ob beglaubigte Übersetzung, Dolmetschen vor Gericht oder eine Anfrage für Ihr Unternehmen – wir sind für Sie da. Schreiben Sie uns unverbindlich über das Formular, rufen Sie uns an oder besuchen Sie uns in unseren Büros in",
+      "or": "oder",
+      "intro1Tail": ".",
+      "intro2": "Wir antworten in der Regel innerhalb von 24 Stunden."
+    },
+    "uebersetzen": {
+      "label": "Übersetzungen",
+      "heading": "Übersetzungsleistungen",
+      "tagline": "Präzise, beglaubigt und schnell – für jeden Bedarf und jede Branche.",
+      "intro": "Wir bieten professionelle Übersetzungsleistungen für alle Anforderungen – von beglaubigten Dokumenten über Websites bis hin zu komplexen Fach- und Techniktexten. Unsere vereidigten und zertifizierten Übersetzerinnen garantieren höchste Präzision, Vertraulichkeit und schnelle Bearbeitung.",
+      "items": [
+        { "title": "Beglaubigte Übersetzungen", "desc": "Amtlich anerkannte Übersetzungen von Urkunden, Zeugnissen und Dokumenten – rechtssicher vor Gerichten und Behörden." },
+        { "title": "Juristische Übersetzungen",  "desc": "Verträge, Urteile, notarielle Dokumente und Rechtsgutachten – präzise und terminologisch einwandfrei." },
+        { "title": "Fachübersetzungen",          "desc": "Medizinische, wissenschaftliche und kaufmännische Texte in höchster inhaltlicher Genauigkeit." },
+        { "title": "Technische Übersetzungen",   "desc": "Handbücher, technische Dokumentationen, Patente und Normen für Industrie und Ingenieurwesen." },
+        { "title": "Website-Übersetzungen",      "desc": "Lokalisierung von Online-Inhalten, SEO-gerechte Texte und mehrsprachige Web-Auftritte." },
+        { "title": "Expressübersetzungen",       "desc": "Schnelle Bearbeitung bei dringenden Aufträgen – ohne Abstriche bei Qualität und Genauigkeit." }
+      ],
+      "orderNow": "Jetzt bestellen",
+      "ctaEyebrow": "In 4 Schritten zur Übersetzung",
+      "ctaHeading": "Bekomme deine Unterlagen übersetzt & beglaubigt",
+      "ctaText": "Laden Sie Ihre Dokumente hoch und erhalten Sie ein unverbindliches Festpreisangebot",
+      "ctaTextHighlight": "innerhalb von 24 Stunden",
+      "ctaPrimary": "Angebot kostenlos anfordern",
+      "ctaSecondary": "Allgemeine Anfrage"
+    },
+    "branchen": {
+      "label": "Branchen",
+      "heading": "Branchenkompetenz im Überblick",
+      "intro": "Wir bieten maßgeschneiderte Übersetzungs- und Dolmetschleistungen für nahezu jede Branche. Unsere zertifizierten Fachübersetzerinnen und Dolmetscher verfügen über tiefgehende Branchenkenntnisse und sorgen für höchste Präzision und Vertraulichkeit – unabhängig vom Fachgebiet.",
+      "items": [
+        { "title": "Justiz & Gerichte",            "desc": "Gerichtsdolmetschen, beglaubigte Übersetzungen für Straf-, Zivil- und Familienverfahren." },
+        { "title": "Behörden & öffentliche Hand", "desc": "Behördenkommunikation, Amtsdokumente, Beglaubigungen für Visa und Aufenthaltsrecht." },
+        { "title": "Wirtschaft & Unternehmen",    "desc": "Verträge, Geschäftskorrespondenz, Hauptversammlungen und Unternehmenskommunikation." },
+        { "title": "Technik & IT",                "desc": "Technische Dokumentation, Handbücher, Software-Lokalisierung und Patente." },
+        { "title": "Medizin & Wissenschaft",      "desc": "Befundberichte, klinische Studien, Fachliteratur und wissenschaftliche Publikationen." },
+        { "title": "Bildung & Forschung",         "desc": "Zeugnisse, Hochschuldokumente, Forschungsberichte und akademische Arbeiten." },
+        { "title": "Marketing & Medien",          "desc": "Werbetexte, Pressemitteilungen, Website-Inhalte und Social-Media-Kampagnen." },
+        { "title": "Tourismus & Kultur",          "desc": "Reisedokumente, kulturelle Veranstaltungen, Museumsführer und Beschilderungen." }
+      ],
+      "cta": "Anfrage stellen"
+    },
+    "impressum": {
+      "label": "Rechtliches",
+      "heading": "Impressum",
+      "tmgHeading": "Angaben gemäß § 5 TMG",
+      "office": "Büro",
+      "owner": "Inhaber: Khaled Hamdan",
+      "contactHeading": "Kontakt",
+      "phone": "Telefon",
+      "fax": "Fax",
+      "email": "E-Mail",
+      "taxHeading": "Steuerliche Angaben",
+      "taxId": "Bundeseinheitliche Steuernummer",
+      "vatId": "USt.-IdNr.",
+      "odrHeading": "Online-Streitbeilegung",
+      "odrText": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:",
+      "odrTail": ". Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+      "liabilityHeading": "Haftung für Inhalte",
+      "liabilityText": "Als Dienstanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.",
+      "linksHeading": "Haftung für Links",
+      "linksText": "Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.",
+      "copyrightHeading": "Urheberrecht",
+      "copyrightText": "Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet."
+    },
+    "referenzen": {
+      "label": "Referenzen",
+      "heading": "Vertrauen in jeder Sprache",
+      "tagline": "Von Gerichten bis zu internationalen Unternehmen"
+    },
+    "angebot": {
+      "label": "Beglaubigte Übersetzung",
+      "headingPart1": "Bekomme deine Unterlagen",
+      "headingPart2": "übersetzt & beglaubigt",
+      "introPre": "Senden Sie uns Ihre Dokumente — wir kümmern uns um den Rest. Vereidigte Fachübersetzer, rechtssichere Beglaubigung und ein unverbindliches Angebot",
+      "introHighlight": "innerhalb von 24 Stunden",
+      "introTail": "."
+    }
+  }
+}

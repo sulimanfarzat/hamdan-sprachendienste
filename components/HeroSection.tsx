@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { ChevronDown } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
 
 /* ── Schwebende Schriftzeichen – Deutsch + Arabisch ────────────────────────
    Markante deutsche Buchstaben (Umlaute, Eszett) und arabische Buchstaben
@@ -21,6 +22,8 @@ const glyphs: { ch: string; className: string }[] = [
 ];
 
 const HeroSection: FC = () => {
+  const { dict } = useLanguage();
+  const t = dict.hero;
   return (
     <section
       id="start"
@@ -137,27 +140,26 @@ const HeroSection: FC = () => {
       {/* ── Main content ─────────────────────────────────────────────────── */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <p className="font-mono text-gold text-xs uppercase tracking-[0.35em] mb-8 opacity-0 animate-[fadeSlideUp_0.6s_ease-out_0.1s_forwards]">
-          Professionelle Sprachdienstleistungen
+          {t.eyebrow}
         </p>
 
         <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-navy dark:text-white leading-[1.15] mb-8 opacity-0 animate-[fadeSlideUp_0.6s_ease-out_0.3s_forwards]">
-          Wir bringen{" "}
+          {t.headlinePart1}{" "}
           <span className="relative inline-block">
-            Sprachen
+            {t.headlineHighlight}
             <span
               className="absolute -bottom-1 left-0 h-[2px] bg-gold w-full origin-left scale-x-0 animate-[expandWidth_0.6s_ease-out_1s_forwards]"
               aria-hidden="true"
             />
           </span>
           <br className="hidden md:block" />
-          {" "}zusammen.
+          {" "}{t.headlinePart2}
         </h1>
 
         <p className="font-body text-navy/60 dark:text-cream/60 text-base md:text-lg max-w-xl mx-auto mb-12 leading-relaxed tracking-wide opacity-0 animate-[fadeSlideUp_0.6s_ease-out_0.5s_forwards]">
-          Dolmetschen &amp; Übersetzen für Gerichte, Behörden und Unternehmen –
-          kompetent, zuverlässig, beglaubigt.
+          {t.subtitle}
           <span className="block mt-1 text-navy/40 dark:text-cream/40 text-sm">
-            In Dresden, Mannheim und bundesweit.
+            {t.subtitleSmall}
           </span>
         </p>
 
@@ -166,13 +168,13 @@ const HeroSection: FC = () => {
             href="/#kontakt"
             className="bg-gold text-navy font-body font-semibold px-8 py-4 uppercase tracking-widest text-xs hover:bg-gold-light transition-all duration-300 hover:shadow-[0_8px_32px_rgba(200,169,110,0.5)] hover:-translate-y-0.5"
           >
-            Unverbindlich anfragen
+            {t.ctaPrimary}
           </a>
           <a
             href="/services"
             className="border border-navy/30 dark:border-gold/40 text-navy/70 dark:text-gold/80 px-8 py-4 uppercase tracking-widest text-xs font-body hover:border-navy/70 dark:hover:border-gold hover:text-navy dark:hover:text-gold hover:bg-navy/5 dark:hover:bg-gold/10 transition-all duration-300 hover:-translate-y-0.5"
           >
-            Unsere Leistungen
+            {t.ctaSecondary}
           </a>
         </div>
       </div>
@@ -182,7 +184,7 @@ const HeroSection: FC = () => {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-navy/40 dark:text-gold/40 opacity-0 animate-[fadeSlideUp_0.6s_ease-out_1.1s_forwards] z-10"
         aria-hidden="true"
       >
-        <span className="font-mono text-[9px] uppercase tracking-[0.3em]">Scrollen</span>
+        <span className="font-mono text-[9px] uppercase tracking-[0.3em]">{t.scroll}</span>
         <ChevronDown className="w-4 h-4 animate-bounce" />
       </div>
     </section>

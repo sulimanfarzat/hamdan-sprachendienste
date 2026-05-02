@@ -1,66 +1,14 @@
 "use client";
 
-import {
-  ChangeEvent,
-  DragEvent,
-  FC,
-  FormEvent,
-  useRef,
-  useState,
-} from "react";
-import {
-  Upload,
-  FileText,
-  X,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  Send,
-  Languages,
-} from "lucide-react";
+import { ChangeEvent, DragEvent, FC, FormEvent, useRef, useState } from "react";
+import { Upload, FileText, X, CheckCircle2, AlertCircle, Loader2, Send, Languages } from "lucide-react";
 import FadeIn from "../ui/FadeIn";
+import { useLanguage } from "../LanguageProvider";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
-const languages = [
-  "Deutsch",
-  "Englisch",
-  "Arabisch",
-  "Französisch",
-  "Spanisch",
-  "Italienisch",
-  "Russisch",
-  "Türkisch",
-  "Polnisch",
-  "Persisch (Farsi)",
-  "Niederländisch",
-  "Portugiesisch",
-  "Tschechisch",
-  "Ungarisch",
-  "Chinesisch",
-  "Japanisch",
-  "Koreanisch",
-  "Urdu",
-  "Hindi",
-  "Andere Sprache",
-];
-
-const documentTypes = [
-  "Geburtsurkunde",
-  "Heiratsurkunde",
-  "Scheidungsurteil",
-  "Zeugnis / Diplom",
-  "Führerschein",
-  "Reisepass / Personalausweis",
-  "Vertrag",
-  "Notarielle Urkunde",
-  "Medizinischer Befund",
-  "Handelsregisterauszug",
-  "Sonstige Urkunde",
-];
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024;        // 10 MB
-const MAX_TOTAL_SIZE = 30 * 1024 * 1024;       // 30 MB
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const MAX_TOTAL_SIZE = 30 * 1024 * 1024;
 const MAX_FILES = 8;
 const ALLOWED_EXT = [".pdf", ".jpg", ".jpeg", ".png", ".doc", ".docx", ".heic"];
 
@@ -70,7 +18,13 @@ const formatSize = (bytes: number) => {
   return `${(bytes / 1048576).toFixed(1)} MB`;
 };
 
+// Simple {placeholder} interpolation
+const interp = (s: string, vars: Record<string, string | number>): string =>
+  s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? `{${k}}`));
+
 const QuoteForm: FC = () => {
+  const { dict } = useLanguage();
+  const t = dict.quote;
   const [files, setFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
@@ -78,23 +32,22 @@ const QuoteForm: FC = () => {
   const [errorMsg, setErrorMsg] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // ── File handling ─────────────────────────────────────────────
   const validateAndAdd = (incoming: File[]) => {
     setFileError("");
     const current = [...files];
 
     for (const f of incoming) {
       if (current.length >= MAX_FILES) {
-        setFileError(`Maximal ${MAX_FILES} Dateien erlaubt.`);
+        setFileError(interp(t.fileTooMany, { max: MAX_FILES }));
         break;
       }
       const ext = f.name.toLowerCase().slice(f.name.lastIndexOf("."));
       if (!ALLOWED_EXT.includes(ext)) {
-        setFileError(`Format „${ext}" wird nicht unterstützt.`);
+        setFileError(interp(t.fileFormat, { ext }));
         continue;
       }
       if (f.size > MAX_FILE_SIZE) {
-        setFileError(`„${f.name}" überschreitet 10 MB.`);
+        setFileError(interp(t.fileSize, { name: f.name }));
         continue;
       }
       current.push(f);
@@ -102,17 +55,16 @@ const QuoteForm: FC = () => {
 
     const total = current.reduce((sum, f) => sum + f.size, 0);
     if (total > MAX_TOTAL_SIZE) {
-      setFileError("Gesamtgröße überschreitet 30 MB.");
+      setFileError(t.fileTotal);
       return;
     }
-
     setFiles(current);
   };
 
   const handleFilePick = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files) return;
     validateAndAdd(Array.from(e.target.files));
-    e.target.value = ""; // allow re-picking the same file
+    e.target.value = "";
   };
 
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
@@ -128,11 +80,10 @@ const QuoteForm: FC = () => {
     setFileError("");
   };
 
-  // ── Submit ────────────────────────────────────────────────────
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (files.length === 0) {
-      setFileError("Bitte laden Sie mindestens ein Dokument hoch.");
+      setFileError(t.fileMissing);
       return;
     }
 
@@ -144,10 +95,7 @@ const QuoteForm: FC = () => {
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/quote.php", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch("/api/quote.php", { method: "POST", body: formData });
       const result = await res.json();
       if (result.success) {
         setState("success");
@@ -156,11 +104,11 @@ const QuoteForm: FC = () => {
         setTimeout(() => setState("idle"), 8000);
       } else {
         setState("error");
-        setErrorMsg(result.error ?? "Es ist ein Fehler aufgetreten.");
+        setErrorMsg(result.error ?? "");
       }
     } catch {
       setState("error");
-      setErrorMsg("Verbindungsfehler. Bitte versuchen Sie es später erneut.");
+      setErrorMsg(t.errorTransport);
     }
   };
 
@@ -180,17 +128,11 @@ const QuoteForm: FC = () => {
       <div className="max-w-5xl mx-auto px-6">
 
         <FadeIn className="text-center mb-12">
-          <p className="font-mono text-gold text-xs uppercase tracking-[0.3em] mb-4">
-            Angebot anfordern
-          </p>
-          <h2 className="font-display font-bold text-3xl md:text-5xl text-navy dark:text-white">
-            Unterlagen einreichen
-          </h2>
+          <p className="font-mono text-gold text-xs uppercase tracking-[0.3em] mb-4">{t.label}</p>
+          <h2 className="font-display font-bold text-3xl md:text-5xl text-navy dark:text-white">{t.heading}</h2>
           <div className="w-16 h-[2px] bg-gradient-to-r from-gold to-gold-light mx-auto mt-6" />
           <p className="font-body text-navy/65 dark:text-cream/60 text-base mt-6 max-w-2xl mx-auto">
-            Füllen Sie das Formular aus und laden Sie Ihre Dokumente hoch.
-            Wir melden uns innerhalb von <span className="text-gold font-medium">24&nbsp;Stunden</span> mit
-            einem unverbindlichen Festpreisangebot.
+            {t.intro} <span className="text-gold font-medium">{t.intro24h}</span> {t.introTail}
           </p>
         </FadeIn>
 
@@ -201,122 +143,104 @@ const QuoteForm: FC = () => {
             encType="multipart/form-data"
             className="bg-white dark:bg-navy-light border border-navy/8 dark:border-white/8 p-6 md:p-12 shadow-xl"
           >
-            {/* ── 1. Persönliche Daten ──────────────────────── */}
-            <span className={sectionLabel}>1 — Persönliche Daten</span>
+            {/* 1. Persönliche Daten */}
+            <span className={sectionLabel}>{t.section1}</span>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
               <div>
-                <label htmlFor="qf-name" className={labelClass}>
-                  Vor- &amp; Nachname <span className="text-gold">*</span>
-                </label>
-                <input id="qf-name" name="name" type="text" required autoComplete="name"
-                  placeholder="Max Mustermann" className={inputClass} />
+                <label htmlFor="qf-name" className={labelClass}>{t.name} <span className="text-gold">*</span></label>
+                <input id="qf-name" name="name" type="text" required autoComplete="name" placeholder={t.namePh} className={inputClass} />
               </div>
               <div>
-                <label htmlFor="qf-email" className={labelClass}>
-                  E-Mail <span className="text-gold">*</span>
-                </label>
-                <input id="qf-email" name="email" type="email" required autoComplete="email"
-                  placeholder="ihre@email.de" className={inputClass} />
+                <label htmlFor="qf-email" className={labelClass}>{t.email} <span className="text-gold">*</span></label>
+                <input id="qf-email" name="email" type="email" required autoComplete="email" placeholder={t.emailPh} className={inputClass} />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
               <div>
                 <label htmlFor="qf-phone" className={labelClass}>
-                  Telefon{" "}
-                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">(optional)</span>
+                  {t.phone}{" "}
+                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">{dict.contact.form.optional}</span>
                 </label>
-                <input id="qf-phone" name="phone" type="tel" autoComplete="tel"
-                  placeholder="+49 …" className={inputClass} />
+                <input id="qf-phone" name="phone" type="tel" autoComplete="tel" placeholder={t.phonePh} className={inputClass} />
               </div>
               <div>
                 <label htmlFor="qf-address" className={labelClass}>
-                  Lieferadresse für Originale{" "}
-                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">(optional)</span>
+                  {t.address}{" "}
+                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">{dict.contact.form.optional}</span>
                 </label>
-                <input id="qf-address" name="address" type="text" autoComplete="street-address"
-                  placeholder="Straße, PLZ, Ort" className={inputClass} />
+                <input id="qf-address" name="address" type="text" autoComplete="street-address" placeholder={t.addressPh} className={inputClass} />
               </div>
             </div>
 
-            {/* ── 2. Übersetzung ──────────────────────────── */}
-            <span className={sectionLabel}>2 — Sprachen &amp; Dokument</span>
+            {/* 2. Sprachen */}
+            <span className={sectionLabel}>{t.section2}</span>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
               <div>
                 <label htmlFor="qf-source" className={labelClass}>
                   <Languages className="inline w-3 h-3 mr-1 -mt-0.5 text-gold" />
-                  Ausgangssprache <span className="text-gold">*</span>
+                  {t.sourceLang} <span className="text-gold">*</span>
                 </label>
-                <select id="qf-source" name="sourceLang" required defaultValue=""
-                  className={inputClass}>
-                  <option value="" disabled>Bitte auswählen …</option>
-                  {languages.map((l) => <option key={l} value={l}>{l}</option>)}
+                <select id="qf-source" name="sourceLang" required defaultValue="" className={inputClass}>
+                  <option value="" disabled>{t.selectPh}</option>
+                  {t.languages.map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
               <div>
-                <label htmlFor="qf-target" className={labelClass}>
-                  Zielsprache <span className="text-gold">*</span>
-                </label>
-                <select id="qf-target" name="targetLang" required defaultValue=""
-                  className={inputClass}>
-                  <option value="" disabled>Bitte auswählen …</option>
-                  {languages.map((l) => <option key={l} value={l}>{l}</option>)}
+                <label htmlFor="qf-target" className={labelClass}>{t.targetLang} <span className="text-gold">*</span></label>
+                <select id="qf-target" name="targetLang" required defaultValue="" className={inputClass}>
+                  <option value="" disabled>{t.selectPh}</option>
+                  {t.languages.map((l) => <option key={l} value={l}>{l}</option>)}
                 </select>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
               <div>
-                <label htmlFor="qf-doctype" className={labelClass}>
-                  Art des Dokuments <span className="text-gold">*</span>
-                </label>
-                <select id="qf-doctype" name="documentType" required defaultValue=""
-                  className={inputClass}>
-                  <option value="" disabled>Bitte auswählen …</option>
-                  {documentTypes.map((t) => <option key={t} value={t}>{t}</option>)}
+                <label htmlFor="qf-doctype" className={labelClass}>{t.documentType} <span className="text-gold">*</span></label>
+                <select id="qf-doctype" name="documentType" required defaultValue="" className={inputClass}>
+                  <option value="" disabled>{t.selectPh}</option>
+                  {t.documentTypes.map((d) => <option key={d} value={d}>{d}</option>)}
                 </select>
               </div>
               <div>
                 <label htmlFor="qf-pages" className={labelClass}>
-                  Anzahl Seiten ca.{" "}
-                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">(optional)</span>
+                  {t.pages}{" "}
+                  <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">{dict.contact.form.optional}</span>
                 </label>
-                <input id="qf-pages" name="pages" type="number" min="1" max="500"
-                  placeholder="1" className={inputClass} />
+                <input id="qf-pages" name="pages" type="number" min="1" max="500" placeholder="1" className={inputClass} />
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
               <label className="flex items-start gap-3 cursor-pointer p-4 border border-navy/12 dark:border-white/10 hover:border-gold/50 transition-colors duration-200 group">
-                <input type="checkbox" name="certified" value="ja" defaultChecked
-                  className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
+                <input type="checkbox" name="certified" value="ja" defaultChecked className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
                 <div>
-                  <p className="font-display text-navy dark:text-white font-semibold text-base">Beglaubigung erforderlich</p>
-                  <p className="font-body text-navy/55 dark:text-cream/45 text-xs mt-0.5">Amtlich anerkannt für Behörden &amp; Gerichte</p>
+                  <p className="font-display text-navy dark:text-white font-semibold text-base">{t.certifiedTitle}</p>
+                  <p className="font-body text-navy/55 dark:text-cream/45 text-xs mt-0.5">{t.certifiedDesc}</p>
                 </div>
               </label>
               <label className="flex items-start gap-3 cursor-pointer p-4 border border-navy/12 dark:border-white/10 hover:border-gold/50 transition-colors duration-200 group">
-                <input type="checkbox" name="express" value="ja"
-                  className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
+                <input type="checkbox" name="express" value="ja" className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
                 <div>
-                  <p className="font-display text-navy dark:text-white font-semibold text-base">Express-Bearbeitung</p>
-                  <p className="font-body text-navy/55 dark:text-cream/45 text-xs mt-0.5">Schnellere Lieferung gegen Aufpreis</p>
+                  <p className="font-display text-navy dark:text-white font-semibold text-base">{t.expressTitle}</p>
+                  <p className="font-body text-navy/55 dark:text-cream/45 text-xs mt-0.5">{t.expressDesc}</p>
                 </div>
               </label>
             </div>
 
             <div className="mb-10">
               <label htmlFor="qf-deadline" className={labelClass}>
-                Wunschtermin{" "}
-                <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">(optional)</span>
+                {t.deadline}{" "}
+                <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">{dict.contact.form.optional}</span>
               </label>
               <input id="qf-deadline" name="deadline" type="date" className={inputClass} />
             </div>
 
-            {/* ── 3. Datei-Upload ─────────────────────────── */}
-            <span className={sectionLabel}>3 — Unterlagen hochladen <span className="text-gold">*</span></span>
+            {/* 3. Upload */}
+            <span className={sectionLabel}>{t.section3} <span className="text-gold">*</span></span>
 
             <div
               onDrop={handleDrop}
@@ -335,8 +259,8 @@ const QuoteForm: FC = () => {
                 multiple
                 accept={ALLOWED_EXT.join(",")}
                 onChange={handleFilePick}
-                aria-label="Dokumente auswählen"
-                title="Dokumente auswählen"
+                aria-label={t.uploadHeading}
+                title={t.uploadHeading}
                 className="hidden"
               />
               <div className="flex flex-col items-center text-center gap-3 pointer-events-none">
@@ -344,42 +268,34 @@ const QuoteForm: FC = () => {
                   <Upload className="w-6 h-6 text-gold" />
                 </div>
                 <p className="font-display font-semibold text-navy dark:text-white text-lg">
-                  Dateien hierher ziehen oder klicken
+                  {t.uploadHeading}
                 </p>
                 <p className="font-body text-navy/55 dark:text-cream/45 text-sm">
-                  PDF · JPG · PNG · DOC · DOCX · HEIC — bis 10 MB pro Datei, max. {MAX_FILES} Dateien
+                  {interp(t.uploadDesc, { max: MAX_FILES })}
                 </p>
               </div>
             </div>
 
-            {/* File list */}
             {files.length > 0 && (
               <ul className="mt-5 flex flex-col gap-2">
                 {files.map((f, i) => (
-                  <li
-                    key={`${f.name}-${i}`}
-                    className="flex items-center gap-3 px-4 py-3 bg-cream dark:bg-navy border border-navy/8 dark:border-white/8"
-                  >
+                  <li key={`${f.name}-${i}`} className="flex items-center gap-3 px-4 py-3 bg-cream dark:bg-navy border border-navy/8 dark:border-white/8">
                     <FileText className="w-4 h-4 text-gold flex-shrink-0" />
-                    <span className="font-body text-sm text-navy dark:text-white flex-1 truncate">
-                      {f.name}
-                    </span>
-                    <span className="font-mono text-xs text-navy/55 dark:text-cream/45 flex-shrink-0">
-                      {formatSize(f.size)}
-                    </span>
+                    <span className="font-body text-sm text-navy dark:text-white flex-1 truncate">{f.name}</span>
+                    <span className="font-mono text-xs text-navy/55 dark:text-cream/45 flex-shrink-0">{formatSize(f.size)}</span>
                     <button
                       type="button"
                       onClick={() => removeFile(i)}
                       className="p-1 text-navy/50 hover:text-red-500 dark:text-cream/50 dark:hover:text-red-400 transition-colors duration-200"
-                      aria-label={`${f.name} entfernen`}
+                      aria-label={interp(t.removeFile, { name: f.name })}
                     >
                       <X className="w-4 h-4" />
                     </button>
                   </li>
                 ))}
                 <li className="flex items-center justify-between px-4 pt-2 font-mono text-[11px] text-navy/50 dark:text-cream/40">
-                  <span>{files.length} / {MAX_FILES} Dateien</span>
-                  <span>{formatSize(totalSize)} / 30 MB</span>
+                  <span>{interp(t.filesCount, { n: files.length, max: MAX_FILES })}</span>
+                  <span>{interp(t.filesSize, { used: formatSize(totalSize) })}</span>
                 </li>
               </ul>
             )}
@@ -391,17 +307,11 @@ const QuoteForm: FC = () => {
               </p>
             )}
 
-            {/* ── 4. Anmerkungen ──────────────────────────── */}
+            {/* 4. Notes */}
             <div className="mt-10">
-              <span className={sectionLabel}>4 — Anmerkungen</span>
-              <label htmlFor="qf-notes" className="sr-only">Anmerkungen</label>
-              <textarea
-                id="qf-notes"
-                name="notes"
-                rows={5}
-                placeholder="Besonderheiten, Verwendungszweck (z. B. Standesamt, Visumantrag), Fragen …"
-                className={`${inputClass} resize-none`}
-              />
+              <span className={sectionLabel}>{t.section4}</span>
+              <label htmlFor="qf-notes" className="sr-only">{t.section4}</label>
+              <textarea id="qf-notes" name="notes" rows={5} placeholder={t.notesPh} className={`${inputClass} resize-none`} />
             </div>
 
             {/* Honeypot */}
@@ -412,20 +322,17 @@ const QuoteForm: FC = () => {
 
             {/* DSGVO */}
             <label className="flex items-start gap-3 mt-8 mb-6 cursor-pointer">
-              <input type="checkbox" name="consent" required value="ja"
-                className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
+              <input type="checkbox" name="consent" required value="ja" className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
               <span className="font-body text-sm text-navy/70 dark:text-cream/60 leading-relaxed">
-                Ich willige in die Verarbeitung meiner Angaben und die hochgeladenen Unterlagen
-                gemäß der{" "}
+                {t.consent}{" "}
                 <a href="/datenschutz" className="text-gold hover:text-gold-light underline underline-offset-2">
-                  Datenschutzerklärung
+                  {t.consentLink}
                 </a>{" "}
-                ein. Die Daten werden ausschließlich zur Bearbeitung meiner Anfrage genutzt.
+                {t.consentSuffix}
                 <span className="text-gold"> *</span>
               </span>
             </label>
 
-            {/* Submit */}
             <button
               type="submit"
               disabled={state === "submitting"}
@@ -434,11 +341,11 @@ const QuoteForm: FC = () => {
               {state === "submitting" ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  Wird gesendet …
+                  {t.submitting}
                 </>
               ) : (
                 <>
-                  Angebot kostenlos anfordern
+                  {t.submitIdle}
                   <Send className="w-4 h-4" />
                 </>
               )}
@@ -448,10 +355,8 @@ const QuoteForm: FC = () => {
               <div className="mt-5 flex items-start gap-3 p-5 bg-gold/10 border border-gold/30 text-navy dark:text-white">
                 <CheckCircle2 className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-display font-semibold text-base">Vielen Dank für Ihre Anfrage!</p>
-                  <p className="font-body text-sm text-navy/65 dark:text-cream/65 mt-1">
-                    Wir haben Ihre Unterlagen erhalten und melden uns innerhalb von 24 Stunden mit einem Festpreisangebot.
-                  </p>
+                  <p className="font-display font-semibold text-base">{t.successTitle}</p>
+                  <p className="font-body text-sm text-navy/65 dark:text-cream/65 mt-1">{t.successDesc}</p>
                 </div>
               </div>
             )}
@@ -460,9 +365,9 @@ const QuoteForm: FC = () => {
               <div className="mt-5 flex items-start gap-3 p-5 bg-red-500/10 border border-red-500/30">
                 <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-display font-semibold text-base text-navy dark:text-white">Senden fehlgeschlagen</p>
+                  <p className="font-display font-semibold text-base text-navy dark:text-white">{t.errorTitle}</p>
                   <p className="font-body text-sm text-navy/65 dark:text-cream/65 mt-1">
-                    {errorMsg} Schreiben Sie uns alternativ direkt an{" "}
+                    {errorMsg || t.errorTransport} {t.errorContact}{" "}
                     <a href="mailto:info@hamdan-sprachendienste.de" className="text-gold hover:underline">
                       info@hamdan-sprachendienste.de
                     </a>.

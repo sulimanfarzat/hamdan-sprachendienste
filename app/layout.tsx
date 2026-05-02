@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Bricolage_Grotesque, Inter, DM_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, DM_Mono, Cairo } from "next/font/google";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ThemeProvider } from "../components/ThemeProvider";
+import { LanguageProvider } from "../components/LanguageProvider";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -26,6 +27,13 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  variable: "--font-cairo",
+  weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Hamdan Sprachendienste – Professionelle Sprachdienstleistungen",
   description:
@@ -40,17 +48,19 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${bricolage.variable} ${inter.variable} ${dmMono.variable} antialiased dark`}
+      className={`${bricolage.variable} ${inter.variable} ${dmMono.variable} ${cairo.variable} antialiased dark`}
       suppressHydrationWarning
     >
       <body className="font-body bg-white dark:bg-navy-light text-navy dark:text-white min-h-screen flex flex-col transition-colors duration-300">
-        <ThemeProvider>
-          <Navbar />
-          <main className="flex-1 flex flex-col w-full">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
+        <LanguageProvider>
+          <ThemeProvider>
+            <Navbar />
+            <main className="flex-1 flex flex-col w-full">
+              {children}
+            </main>
+            <Footer />
+          </ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

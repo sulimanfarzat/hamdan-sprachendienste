@@ -3,23 +3,26 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
-
-const navLinks = [
-  { href: "/#start",        label: "Start" },
-  { href: "/services",       label: "Services" },
-  { href: "/uebersetzen",   label: "Übersetzen" },
-  { href: "/branchen",      label: "Branchen" },
-  { href: "/referenzen",    label: "Referenzen" },
-  { href: "/kontakt",       label: "Kontakt" },
-  { href: "/about",         label: "About" },
-];
+import { useLanguage } from "./LanguageProvider";
 
 const Navbar: FC = () => {
   const [scrolled,  setScrolled]  = useState(false);
   const [menuOpen,  setMenuOpen]  = useState(false);
-  const { theme, toggle, mounted } = useTheme();
+  const { theme, toggle: toggleTheme, mounted } = useTheme();
+  const { dict, toggle: toggleLang } = useLanguage();
+  const t = dict.nav;
+
+  const navLinks = [
+    { href: "/#start",      label: t.links.start },
+    { href: "/services",    label: t.links.services },
+    { href: "/uebersetzen", label: t.links.uebersetzen },
+    { href: "/branchen",    label: t.links.branchen },
+    { href: "/referenzen",  label: t.links.referenzen },
+    { href: "/kontakt",     label: t.links.kontakt },
+    { href: "/about",       label: t.links.about },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -32,14 +35,12 @@ const Navbar: FC = () => {
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // ── Scrolled-Hintergrund abhängig vom Theme ──────────────────
   const scrolledBg = scrolled
     ? theme === "dark"
       ? "bg-navy/98 backdrop-blur-md border-b border-gold/20 shadow-lg"
       : "bg-white backdrop-blur-md border-b border-navy/10 shadow-sm"
     : "bg-transparent";
 
-  // Links: im Light-Mode immer navy; im Dark-Mode weiß
   const linkColor =
     theme === "light"
       ? "text-navy font-medium hover:text-gold"
@@ -54,7 +55,7 @@ const Navbar: FC = () => {
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
           {/* Logo */}
-          <Link href="/" aria-label="Hamdan Sprachendienste – Startseite">
+          <Link href="/" aria-label={t.homeAria}>
             <Image
               src="/logo.png"
               alt="Hamdan Sprachendienste"
@@ -78,56 +79,69 @@ const Navbar: FC = () => {
               </li>
             ))}
 
-            {/* CTA */}
             <li>
               <Link
                 href="/kontakt"
                 className="font-body bg-gold text-navy text-sm font-semibold px-5 py-2.5 uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
               >
-                Anfragen
+                {t.cta}
               </Link>
             </li>
 
-            {/* ── Theme Toggle ────────────────────────────── */}
+            {/* Language Toggle */}
             <li>
               <button
                 type="button"
-                onClick={toggle}
-                aria-label={theme === "dark" ? "Lichtmodus aktivieren" : "Dunkelmodus aktivieren"}
+                onClick={toggleLang}
+                aria-label={t.switchLanguage}
+                className={`flex items-center gap-1.5 p-2 rounded-sm font-mono text-xs uppercase tracking-widest font-medium transition-all duration-300 hover:text-gold ${
+                  theme === "light" ? "text-navy/70" : "text-white/70"
+                }`}
+              >
+                <Globe className="w-4 h-4" />
+                <span>{dict.meta.switchTo}</span>
+              </button>
+            </li>
+
+            {/* Theme Toggle */}
+            <li>
+              <button
+                type="button"
+                onClick={toggleTheme}
+                aria-label={theme === "dark" ? t.lightMode : t.darkMode}
                 className={`p-2 rounded-sm transition-all duration-300 hover:text-gold ${
                   theme === "light" ? "text-navy/70" : "text-white/70"
                 }`}
               >
-                {/* Only swap icon after mount to prevent hydration mismatch */}
-                {mounted && theme === "dark" ? (
-                  <Sun className="w-5 h-5" />
-                ) : (
-                  <Moon className="w-5 h-5" />
-                )}
+                {mounted && theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
             </li>
           </ul>
 
-          {/* Mobile: toggle + hamburger */}
+          {/* Mobile: lang + theme + hamburger */}
           <div className="md:hidden flex items-center gap-2">
             <button
               type="button"
-              onClick={toggle}
-              aria-label={theme === "dark" ? "Lichtmodus aktivieren" : "Dunkelmodus aktivieren"}
+              onClick={toggleLang}
+              aria-label={t.switchLanguage}
+              className={`p-2 font-mono text-xs uppercase font-medium transition-colors duration-300 hover:text-gold ${hamburgerColor}`}
+            >
+              {dict.meta.switchTo}
+            </button>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? t.lightMode : t.darkMode}
               className={`p-2 transition-colors duration-300 hover:text-gold ${hamburgerColor}`}
             >
-              {mounted && theme === "dark" ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
+              {mounted && theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button
               type="button"
               className={`p-2 transition-colors duration-300 hover:text-gold ${hamburgerColor}`}
               onClick={() => setMenuOpen(true)}
-              aria-label="Menü öffnen"
-              aria-expanded={menuOpen ? "true" : "false"}
+              aria-label={t.menuOpen}
+              aria-expanded={menuOpen}
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -135,7 +149,7 @@ const Navbar: FC = () => {
         </nav>
       </header>
 
-      {/* ── Full-screen mobile overlay ──────────────────────────── */}
+      {/* Full-screen mobile overlay */}
       <div
         className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-all duration-300
           bg-cream dark:bg-navy
@@ -148,19 +162,13 @@ const Navbar: FC = () => {
           type="button"
           className="absolute top-6 right-6 text-navy dark:text-white hover:text-gold transition-colors duration-300"
           onClick={() => setMenuOpen(false)}
-          aria-label="Menü schließen"
+          aria-label={t.menuClose}
         >
           <X className="w-8 h-8" />
         </button>
 
         <Link href="/" onClick={() => setMenuOpen(false)} className="mb-10">
-          <Image
-            src="/logo.png"
-            alt="Hamdan Sprachendienste"
-            width={56}
-            height={56}
-            className="object-contain"
-          />
+          <Image src="/logo.png" alt="Hamdan Sprachendienste" width={56} height={56} className="object-contain" />
         </Link>
 
         <ul className="flex flex-col items-center gap-10">
@@ -181,7 +189,7 @@ const Navbar: FC = () => {
               className="font-body bg-gold text-navy font-semibold px-10 py-4 text-lg uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
               onClick={() => setMenuOpen(false)}
             >
-              Anfragen
+              {t.cta}
             </Link>
           </li>
         </ul>

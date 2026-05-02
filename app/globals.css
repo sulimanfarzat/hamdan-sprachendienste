@@ -6,6 +6,17 @@
 /* Smooth anchor scrolling */
 html { scroll-behavior: smooth; }
 
+/* RTL — when Arabic locale is active, swap all font utilities to Cairo */
+html[dir="rtl"] body,
+html[dir="rtl"] .font-display,
+html[dir="rtl"] .font-body,
+html[dir="rtl"] .font-mono {
+  font-family: var(--font-cairo), system-ui, sans-serif;
+}
+
+/* RTL — flip arrow icons that rely on left-pointing iconography */
+html[dir="rtl"] .rtl-flip { transform: scaleX(-1); }
+
 /* ============================================================
    DESIGN SYSTEM — Tailwind v4 CSS-first configuration
    Colors defined here generate bg-*, text-*, border-* utilities

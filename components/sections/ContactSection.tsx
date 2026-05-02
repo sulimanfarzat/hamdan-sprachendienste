@@ -1,30 +1,15 @@
 "use client";
 
 import { FC, FormEvent, useState } from "react";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Send,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-} from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import FadeIn from "../ui/FadeIn";
+import { useLanguage } from "../LanguageProvider";
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
-const subjects = [
-  "Dolmetschen vor Ort",
-  "Beglaubigte Übersetzung",
-  "Urkundenübersetzung",
-  "Konferenz-Dolmetschen",
-  "Online-Dolmetschen",
-  "Fachübersetzung",
-  "Allgemeine Anfrage",
-];
-
 const ContactSection: FC = () => {
+  const { dict } = useLanguage();
+  const t = dict.contact;
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
 
@@ -44,18 +29,17 @@ const ContactSection: FC = () => {
         body: JSON.stringify(data),
       });
       const result = await res.json();
-
       if (result.success) {
         setState("success");
         form.reset();
         setTimeout(() => setState("idle"), 6000);
       } else {
         setState("error");
-        setErrorMsg(result.error ?? "Es ist ein Fehler aufgetreten.");
+        setErrorMsg(result.error ?? "");
       }
     } catch {
       setState("error");
-      setErrorMsg("Verbindungsfehler. Bitte versuchen Sie es später erneut.");
+      setErrorMsg(t.form.errorTransport);
     }
   };
 
@@ -74,17 +58,16 @@ const ContactSection: FC = () => {
 
         <FadeIn className="text-center mb-14">
           <p className="font-mono text-gold text-xs uppercase tracking-[0.3em] mb-4">
-            Kontakt
+            {t.label}
           </p>
           <h2 className="font-display font-bold text-4xl md:text-5xl text-navy dark:text-white">
-            Unverbindlich anfragen
+            {t.heading}
           </h2>
           <div className="w-16 h-[2px] bg-gradient-to-r from-gold to-gold-light mx-auto mt-6" />
         </FadeIn>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
 
-          {/* ── Form (3/5) ─────────────────────────────────── */}
           <FadeIn direction="left" className="lg:col-span-3">
             <form
               onSubmit={handleSubmit}
@@ -94,114 +77,72 @@ const ContactSection: FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                 <div>
                   <label htmlFor="name" className={labelClass}>
-                    Name <span className="text-gold">*</span>
+                    {t.form.name} <span className="text-gold">*</span>
                   </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    placeholder="Ihr vollständiger Name"
-                    className={inputClass}
-                  />
+                  <input id="name" name="name" type="text" required autoComplete="name"
+                    placeholder={t.form.namePlaceholder} className={inputClass} />
                 </div>
-
                 <div>
                   <label htmlFor="email" className={labelClass}>
-                    E-Mail <span className="text-gold">*</span>
+                    {t.form.email} <span className="text-gold">*</span>
                   </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    placeholder="ihre@email.de"
-                    className={inputClass}
-                  />
+                  <input id="email" name="email" type="email" required autoComplete="email"
+                    placeholder={t.form.emailPlaceholder} className={inputClass} />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                 <div>
                   <label htmlFor="phone" className={labelClass}>
-                    Telefon{" "}
+                    {t.form.phone}{" "}
                     <span className="normal-case tracking-normal text-navy/40 dark:text-white/35">
-                      (optional)
+                      {t.form.optional}
                     </span>
                   </label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    autoComplete="tel"
-                    placeholder="+49 …"
-                    className={inputClass}
-                  />
+                  <input id="phone" name="phone" type="tel" autoComplete="tel"
+                    placeholder={t.form.phonePlaceholder} className={inputClass} />
                 </div>
-
                 <div>
                   <label htmlFor="subject" className={labelClass}>
-                    Anliegen <span className="text-gold">*</span>
+                    {t.form.subject} <span className="text-gold">*</span>
                   </label>
                   <select
-                    id="subject"
-                    name="subject"
-                    required
-                    defaultValue=""
+                    id="subject" name="subject" required defaultValue=""
                     className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23C8A96E%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><polyline%20points=%226%209%2012%2015%2018%209%22/></svg>')] bg-no-repeat bg-[right_1rem_center] bg-[length:1rem] pr-10`}
                   >
-                    <option value="" disabled>
-                      Bitte auswählen …
-                    </option>
-                    {subjects.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
+                    <option value="" disabled>{t.form.subjectPlaceholder}</option>
+                    {t.form.subjects.map((s) => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
               </div>
 
               <div className="mb-5">
                 <label htmlFor="message" className={labelClass}>
-                  Nachricht <span className="text-gold">*</span>
+                  {t.form.message} <span className="text-gold">*</span>
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={6}
-                  placeholder="Beschreiben Sie Ihr Anliegen – Sprachen, Termin, Umfang …"
-                  className={`${inputClass} resize-none`}
-                />
+                <textarea id="message" name="message" required rows={6}
+                  placeholder={t.form.messagePlaceholder}
+                  className={`${inputClass} resize-none`} />
               </div>
 
-              {/* Honeypot — hidden from users, visible to bots */}
+              {/* Honeypot */}
               <div className="absolute -left-[9999px]" aria-hidden="true">
-                <label htmlFor="website">Website (nicht ausfüllen)</label>
+                <label htmlFor="website">{t.form.honeypotLabel}</label>
                 <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
               </div>
 
               <label className="flex items-start gap-3 mb-6 cursor-pointer group">
-                <input
-                  type="checkbox"
-                  name="consent"
-                  required
-                  className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer"
-                />
+                <input type="checkbox" name="consent" required
+                  className="mt-1 w-4 h-4 accent-gold flex-shrink-0 cursor-pointer" />
                 <span className="font-body text-sm text-navy/70 dark:text-cream/60 leading-relaxed">
-                  Ich willige in die Verarbeitung meiner Angaben gemäß der{" "}
-                  <a
-                    href="/datenschutz"
-                    className="text-gold hover:text-gold-light underline underline-offset-2"
-                  >
-                    Datenschutzerklärung
+                  {t.form.consent}{" "}
+                  <a href="/datenschutz" className="text-gold hover:text-gold-light underline underline-offset-2">
+                    {t.form.consentLink}
                   </a>{" "}
-                  ein. <span className="text-gold">*</span>
+                  {t.form.consentSuffix} <span className="text-gold">*</span>
                 </span>
               </label>
 
-              {/* Submit + status */}
               <button
                 type="submit"
                 disabled={state === "submitting"}
@@ -210,11 +151,11 @@ const ContactSection: FC = () => {
                 {state === "submitting" ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Wird gesendet …
+                    {t.form.submitting}
                   </>
                 ) : (
                   <>
-                    Anfrage senden
+                    {t.form.submitIdle}
                     <Send className="w-4 h-4" />
                   </>
                 )}
@@ -224,9 +165,9 @@ const ContactSection: FC = () => {
                 <div className="mt-5 flex items-start gap-3 p-4 bg-gold/10 border border-gold/30 text-navy dark:text-white">
                   <CheckCircle2 className="w-5 h-5 text-gold flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium font-body">Ihre Nachricht wurde gesendet.</p>
+                    <p className="font-medium font-body">{t.form.successTitle}</p>
                     <p className="text-sm text-navy/65 dark:text-cream/65 mt-0.5 font-body">
-                      Wir antworten in der Regel innerhalb von 24 Stunden.
+                      {t.form.successDesc}
                     </p>
                   </div>
                 </div>
@@ -236,13 +177,13 @@ const ContactSection: FC = () => {
                 <div className="mt-5 flex items-start gap-3 p-4 bg-red-500/10 border border-red-500/30 text-navy dark:text-white">
                   <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium font-body">Senden fehlgeschlagen</p>
+                    <p className="font-medium font-body">{t.form.errorTitle}</p>
                     <p className="text-sm text-navy/65 dark:text-cream/65 mt-0.5 font-body">
-                      {errorMsg} Sie können uns auch direkt unter{" "}
+                      {errorMsg || t.form.errorTransport} {t.form.errorContact}{" "}
                       <a href="mailto:info@hamdan-sprachendienste.de" className="text-gold hover:underline">
                         info@hamdan-sprachendienste.de
                       </a>{" "}
-                      erreichen.
+                      {t.form.errorContactSuffix}
                     </p>
                   </div>
                 </div>
@@ -250,28 +191,27 @@ const ContactSection: FC = () => {
             </form>
           </FadeIn>
 
-          {/* ── Address & contact info (2/5) ───────────────── */}
           <FadeIn direction="right" delay={120} className="lg:col-span-2">
             <div className="flex flex-col gap-8 h-full">
 
               <div className="bg-cream dark:bg-navy border border-navy/8 dark:border-white/8 p-6 md:p-8 shadow-sm">
-                <p className="font-mono text-gold text-[10px] uppercase tracking-[0.3em] mb-4">Dresden</p>
+                <p className="font-mono text-gold text-[10px] uppercase tracking-[0.3em] mb-4">{t.info.dresden}</p>
                 <address className="not-italic flex gap-3">
                   <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-1" aria-hidden="true" />
                   <div className="font-body">
-                    <p className="font-medium text-navy dark:text-white">Agnes-Smedley-Straße 7</p>
-                    <p className="text-navy/55 dark:text-cream/45 text-sm">01187 Dresden</p>
+                    <p className="font-medium text-navy dark:text-white">{t.info.dresdenStreet}</p>
+                    <p className="text-navy/55 dark:text-cream/45 text-sm">{t.info.dresdenCity}</p>
                   </div>
                 </address>
               </div>
 
               <div className="bg-cream dark:bg-navy border border-navy/8 dark:border-white/8 p-6 md:p-8 shadow-sm">
-                <p className="font-mono text-gold text-[10px] uppercase tracking-[0.3em] mb-4">Mannheim</p>
+                <p className="font-mono text-gold text-[10px] uppercase tracking-[0.3em] mb-4">{t.info.mannheim}</p>
                 <address className="not-italic flex gap-3">
                   <MapPin className="w-4 h-4 text-gold flex-shrink-0 mt-1" aria-hidden="true" />
                   <div className="font-body">
-                    <p className="font-medium text-navy dark:text-white">Spinozastr. 5</p>
-                    <p className="text-navy/55 dark:text-cream/45 text-sm">68165 Mannheim</p>
+                    <p className="font-medium text-navy dark:text-white">{t.info.mannheimStreet}</p>
+                    <p className="text-navy/55 dark:text-cream/45 text-sm">{t.info.mannheimCity}</p>
                   </div>
                 </address>
               </div>
@@ -280,6 +220,7 @@ const ContactSection: FC = () => {
                 <a
                   href="tel:+4917684558344"
                   className="flex items-center gap-3 text-navy dark:text-white hover:text-gold dark:hover:text-gold transition-colors duration-300 group"
+                  aria-label={t.info.phoneAria}
                 >
                   <span className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold group-hover:text-navy transition-all duration-300 flex-shrink-0">
                     <Phone className="w-4 h-4 text-gold group-hover:text-navy transition-colors duration-300" />
@@ -289,6 +230,7 @@ const ContactSection: FC = () => {
                 <a
                   href="mailto:info@hamdan-sprachendienste.de"
                   className="flex items-center gap-3 text-navy dark:text-white hover:text-gold dark:hover:text-gold transition-colors duration-300 group"
+                  aria-label={t.info.emailAria}
                 >
                   <span className="w-9 h-9 rounded-full bg-gold/10 flex items-center justify-center group-hover:bg-gold transition-all duration-300 flex-shrink-0">
                     <Mail className="w-4 h-4 text-gold group-hover:text-navy transition-colors duration-300" />
