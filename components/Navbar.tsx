@@ -141,7 +141,7 @@ const Navbar: FC = () => {
               className={`p-2 transition-colors duration-300 hover:text-gold ${hamburgerColor}`}
               onClick={() => setMenuOpen(true)}
               aria-label={t.menuOpen}
-              aria-expanded={menuOpen}
+              aria-expanded={menuOpen ? "true" : "false"}
             >
               <Menu className="w-6 h-6" />
             </button>
