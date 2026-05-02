@@ -16,19 +16,18 @@ const highlights = [
 
 export default function AboutPage() {
   return (
-    <section className="w-full min-h-screen bg-cream dark:bg-navy transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-6 py-32">
+    <section className="w-full min-h-screen bg-white dark:bg-navy-light transition-colors duration-300">
+      <div className="max-w-4xl mx-auto px-6 pt-36 pb-28">
 
         {/* Header */}
-        <FadeIn>
-          <p className="font-mono text-gold text-sm uppercase tracking-[0.25em] mb-3">
+        <FadeIn className="text-center mb-16">
+          <p className="font-mono text-gold text-xs uppercase tracking-[0.3em] mb-4">
             About
           </p>
-          <h1 className="font-display text-5xl md:text-6xl text-navy dark:text-white mb-6 leading-tight">
+          <h1 className="font-display font-bold text-4xl md:text-5xl text-navy dark:text-white mb-4">
             Hamdan Sprachendienste
           </h1>
-          {/* Gold divider line */}
-          <div className="w-16 h-[2px] bg-gold mb-12" />
+          <div className="w-16 h-[2px] bg-gradient-to-r from-gold to-gold-light mx-auto" />
         </FadeIn>
 
         {/* Intro paragraphs */}

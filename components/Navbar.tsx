@@ -8,10 +8,10 @@ import { useTheme } from "./ThemeProvider";
 
 const navLinks = [
   { href: "/#start",        label: "Start" },
-  { href: "/#services",     label: "Services" },
+  { href: "/services",       label: "Services" },
   { href: "/uebersetzen",   label: "Übersetzen" },
   { href: "/branchen",      label: "Branchen" },
-  { href: "/#referenzen",   label: "Referenzen" },
+  { href: "/referenzen",    label: "Referenzen" },
   { href: "/kontakt",       label: "Kontakt" },
   { href: "/about",         label: "About" },
 ];
@@ -35,23 +35,23 @@ const Navbar: FC = () => {
   // ── Scrolled-Hintergrund abhängig vom Theme ──────────────────
   const scrolledBg = scrolled
     ? theme === "dark"
-      ? "bg-navy/95 backdrop-blur-md border-b border-gold/20"
-      : "bg-white/95 backdrop-blur-md border-b border-navy/10 shadow-sm"
+      ? "bg-navy/98 backdrop-blur-md border-b border-gold/20 shadow-lg"
+      : "bg-white backdrop-blur-md border-b border-navy/10 shadow-sm"
     : "bg-transparent";
 
-  // Links: auf dem Hero (immer navy) immer weiß; nach scroll je nach Theme
+  // Links: im Light-Mode immer navy; im Dark-Mode weiß
   const linkColor =
-    scrolled && theme === "light"
-      ? "text-navy/80 hover:text-gold"
+    theme === "light"
+      ? "text-navy font-medium hover:text-gold"
       : "text-white/80 hover:text-gold";
 
   const hamburgerColor =
-    scrolled && theme === "light" ? "text-navy" : "text-white";
+    theme === "light" ? "text-navy" : "text-white";
 
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolledBg}`}>
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
           {/* Logo */}
           <Link href="/" aria-label="Hamdan Sprachendienste – Startseite">
@@ -81,7 +81,7 @@ const Navbar: FC = () => {
             {/* CTA */}
             <li>
               <Link
-                href="/#kontakt"
+                href="/kontakt"
                 className="font-body bg-gold text-navy text-sm font-semibold px-5 py-2.5 uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
               >
                 Anfragen
@@ -95,7 +95,7 @@ const Navbar: FC = () => {
                 onClick={toggle}
                 aria-label={theme === "dark" ? "Lichtmodus aktivieren" : "Dunkelmodus aktivieren"}
                 className={`p-2 rounded-sm transition-all duration-300 hover:text-gold ${
-                  scrolled && theme === "light" ? "text-navy/70" : "text-white/70"
+                  theme === "light" ? "text-navy/70" : "text-white/70"
                 }`}
               >
                 {/* Only swap icon after mount to prevent hydration mismatch */}
@@ -177,7 +177,7 @@ const Navbar: FC = () => {
           ))}
           <li className="mt-4">
             <Link
-              href="/#kontakt"
+              href="/kontakt"
               className="font-body bg-gold text-navy font-semibold px-10 py-4 text-lg uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
               onClick={() => setMenuOpen(false)}
             >

@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, DM_Mono } from "next/font/google";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ThemeProvider } from "../components/ThemeProvider";
 
-const playfair = Playfair_Display({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-bricolage",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -37,18 +38,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /*
-     * "dark" as default matches our dark-first design so the server render
-     * and first client paint are in sync — no flash for new visitors.
-     * suppressHydrationWarning lets ThemeProvider swap the class on mount
-     * without a React hydration warning.
-     */
     <html
       lang="de"
-      className={`${playfair.variable} ${dmSans.variable} ${dmMono.variable} antialiased dark`}
+      className={`${bricolage.variable} ${inter.variable} ${dmMono.variable} antialiased dark`}
       suppressHydrationWarning
     >
-      <body className="font-body bg-cream dark:bg-navy text-navy dark:text-white min-h-screen flex flex-col transition-colors duration-300">
+      <body className="font-body bg-white dark:bg-navy-light text-navy dark:text-white min-h-screen flex flex-col transition-colors duration-300">
         <ThemeProvider>
           <Navbar />
           <main className="flex-1 flex flex-col w-full">

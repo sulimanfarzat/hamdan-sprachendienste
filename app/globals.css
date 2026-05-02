@@ -3,6 +3,9 @@
 /* Class-based dark mode: .dark on <html> activates dark: variants */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Smooth anchor scrolling */
+html { scroll-behavior: smooth; }
+
 /* ============================================================
    DESIGN SYSTEM — Tailwind v4 CSS-first configuration
    Colors defined here generate bg-*, text-*, border-* utilities
@@ -31,19 +34,65 @@
 
 /* Font families reference CSS variables injected by next/font */
 @theme inline {
-  --font-display: var(--font-playfair);
-  --font-body:    var(--font-dm-sans);
+  --font-display: var(--font-bricolage);
+  --font-body:    var(--font-inter);
   --font-mono:    var(--font-dm-mono);
 }
 
-/* ── Hero entrance keyframes ──────────────────────────────── */
+/* ── Keyframes ──────────────────────────────────────────── */
 @keyframes fadeSlideUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* scaleX avoids layout recalc; origin-left is set on the element */
 @keyframes expandWidth {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
+}
+
+/* Continuous float for hero orbs */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-22px); }
+}
+
+@keyframes floatAlt {
+  0%, 100% { transform: translateY(-12px); }
+  50%       { transform: translateY(12px); }
+}
+
+@keyframes fadeScale {
+  from { opacity: 0; transform: scale(0.95) translateY(14px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.06; }
+  50%       { opacity: 0.14; }
+}
+
+@keyframes shimmerLine {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Counter-rotation for globe rings */
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* Drift — letters that float, rotate slightly and fade */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg);   opacity: var(--drift-opacity, 0.30); }
+  25%      { transform: translate(18px, -28px) rotate(5deg); opacity: calc(var(--drift-opacity, 0.30) * 0.6); }
+  50%      { transform: translate(28px, -55px) rotate(8deg); opacity: calc(var(--drift-opacity, 0.30) * 0.4); }
+  75%      { transform: translate(12px, -32px) rotate(3deg); opacity: calc(var(--drift-opacity, 0.30) * 0.7); }
+}
+
+@keyframes driftAlt {
+  0%, 100% { transform: translate(0, 0) rotate(0deg);    opacity: var(--drift-opacity, 0.30); }
+  25%      { transform: translate(-22px, 30px) rotate(-4deg); opacity: calc(var(--drift-opacity, 0.30) * 0.65); }
+  50%      { transform: translate(-32px, 50px) rotate(-7deg); opacity: calc(var(--drift-opacity, 0.30) * 0.4); }
+  75%      { transform: translate(-14px, 24px) rotate(-2deg); opacity: calc(var(--drift-opacity, 0.30) * 0.7); }
 }
