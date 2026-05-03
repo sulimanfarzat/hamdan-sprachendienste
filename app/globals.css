@@ -17,6 +17,20 @@ html[dir="rtl"] .font-mono {
 /* RTL — flip arrow icons that rely on left-pointing iconography */
 html[dir="rtl"] .rtl-flip { transform: scaleX(-1); }
 
+/* RTL — Arabic is a connected cursive script; letter-spacing breaks glyphs */
+html[dir="rtl"] * { letter-spacing: 0 !important; }
+
+/* RTL — select dropdown arrow must appear on the left */
+html[dir="rtl"] select.select-rtl {
+  background-position: left 1rem center !important;
+  padding-left: 2.5rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Prevent horizontal overflow in both LTR and RTL layouts */
+body { overflow-x: hidden; }
+html { overflow-x: hidden; }
+
 /* ============================================================
    DESIGN SYSTEM — Tailwind v4 CSS-first configuration
    Colors defined here generate bg-*, text-*, border-* utilities

@@ -180,7 +180,7 @@ const QuoteForm: FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
               <div>
                 <label htmlFor="qf-source" className={labelClass}>
-                  <Languages className="inline w-3 h-3 mr-1 -mt-0.5 text-gold" />
+                  <Languages className="inline w-3 h-3 me-1 -mt-0.5 text-gold" />
                   {t.sourceLang} <span className="text-gold">*</span>
                 </label>
                 <select id="qf-source" name="sourceLang" required defaultValue="" className={inputClass}>
@@ -315,7 +315,7 @@ const QuoteForm: FC = () => {
             </div>
 
             {/* Honeypot */}
-            <div className="absolute -left-[9999px]" aria-hidden="true">
+            <div className="fixed -left-[9999px] -top-[9999px]" aria-hidden="true">
               <label htmlFor="qf-website">Website</label>
               <input id="qf-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
             </div>

@@ -8,7 +8,8 @@ import { useLanguage } from "../LanguageProvider";
 type FormState = "idle" | "submitting" | "success" | "error";
 
 const ContactSection: FC = () => {
-  const { dict } = useLanguage();
+  const { dict, locale } = useLanguage();
+  const isRtl = locale === "ar";
   const t = dict.contact;
   const [state, setState] = useState<FormState>("idle");
   const [errorMsg, setErrorMsg] = useState<string>("");
@@ -108,7 +109,7 @@ const ContactSection: FC = () => {
                   </label>
                   <select
                     id="subject" name="subject" required defaultValue=""
-                    className={`${inputClass} appearance-none bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23C8A96E%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><polyline%20points=%226%209%2012%2015%2018%209%22/></svg>')] bg-no-repeat bg-[right_1rem_center] bg-[length:1rem] pr-10`}
+                    className={`${inputClass} appearance-none select-rtl bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%2024%2024%22%20fill=%22none%22%20stroke=%22%23C8A96E%22%20stroke-width=%222%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><polyline%20points=%226%209%2012%2015%2018%209%22/></svg>')] bg-no-repeat bg-[length:1rem] ${isRtl ? "bg-[left_1rem_center] pl-10" : "bg-[right_1rem_center] pr-10"}`}
                   >
                     <option value="" disabled>{t.form.subjectPlaceholder}</option>
                     {t.form.subjects.map((s) => <option key={s} value={s}>{s}</option>)}

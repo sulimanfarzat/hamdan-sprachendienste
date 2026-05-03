@@ -1,11 +1,11 @@
 import HeroSection from "../components/HeroSection";
-import ContactSection from "../components/sections/ContactSection";
+import AngebotTeaser from "../components/sections/AngebotTeaser";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <ContactSection />
+      <AngebotTeaser />
     </>
   );
 }

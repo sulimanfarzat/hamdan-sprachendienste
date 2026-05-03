@@ -21,8 +21,8 @@ const Navbar: FC = () => {
     { href: "/uebersetzen", label: t.links.uebersetzen },
     { href: "/branchen",    label: t.links.branchen },
     { href: "/referenzen",  label: t.links.referenzen },
-    { href: "/kontakt",     label: t.links.kontakt },
     { href: "/about",       label: t.links.about },
+    { href: "/kontakt",     label: t.links.kontakt },
   ];
 
   useEffect(() => {
@@ -136,7 +136,7 @@ const Navbar: FC = () => {
               className={`p-2 transition-colors duration-300 hover:text-gold ${hamburgerColor}`}
               onClick={() => setMenuOpen(true)}
               aria-label={t.menuOpen}
-              aria-expanded={menuOpen ? "true" : "false"}
+              aria-expanded={menuOpen}
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -178,15 +178,6 @@ const Navbar: FC = () => {
               </Link>
             </li>
           ))}
-          <li className="mt-4">
-            <Link
-              href="/kontakt"
-              className="font-body bg-gold text-navy font-semibold px-10 py-4 text-lg uppercase tracking-wider hover:bg-gold-light transition-all duration-300"
-              onClick={() => setMenuOpen(false)}
-            >
-              {t.cta}
-            </Link>
-          </li>
         </ul>
       </div>
     </>
