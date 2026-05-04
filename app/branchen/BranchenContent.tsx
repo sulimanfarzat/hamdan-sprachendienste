@@ -34,12 +34,12 @@ export default function BranchenContent() {
             const num = String(i + 1).padStart(2, "0");
             return (
               <FadeIn key={item.title} delay={i * 55} direction="up" className="h-full">
-                <div className="group relative bg-navy dark:bg-navy-dark border border-white/5 dark:border-white/8 p-6 flex flex-col overflow-hidden hover:border-gold/25 hover:-translate-y-1.5 hover:shadow-[0_20px_60px_rgba(10,22,40,0.4)] dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-all duration-500 cursor-default h-full">
+                <div className="group relative bg-cream dark:bg-navy-dark border border-navy/10 dark:border-white/8 p-6 flex flex-col overflow-hidden hover:border-gold/50 dark:hover:border-gold/25 hover:-translate-y-1.5 hover:shadow-xl dark:hover:shadow-[0_20px_60px_rgba(0,0,0,0.5)] transition-all duration-500 cursor-default h-full">
 
                   {/* Large icon watermark */}
-                  <div className="absolute -bottom-6 -end-6 pointer-events-none transition-all duration-500 group-hover:scale-110 group-hover:opacity-100">
+                  <div className="absolute -bottom-6 -end-6 pointer-events-none transition-all duration-500 group-hover:scale-110">
                     <Icon
-                      className="w-28 h-28 text-white/[0.04] group-hover:text-gold/[0.07] transition-all duration-500"
+                      className="w-28 h-28 text-navy/[0.05] dark:text-white/[0.04] group-hover:text-gold/[0.10] dark:group-hover:text-gold/[0.07] transition-all duration-500"
                       strokeWidth={0.6}
                     />
                   </div>
@@ -49,16 +49,16 @@ export default function BranchenContent() {
                     <div className="w-10 h-10 bg-gold/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-gold group-hover:shadow-[0_0_20px_rgba(200,169,110,0.4)]">
                       <Icon className="w-4.5 h-4.5 text-gold group-hover:text-navy transition-colors duration-300" />
                     </div>
-                    <span className="font-mono text-[10px] text-white/20 group-hover:text-gold/40 transition-colors duration-300">
+                    <span className="font-mono text-[10px] text-navy/25 dark:text-white/20 group-hover:text-gold/60 transition-colors duration-300">
                       {num}
                     </span>
                   </div>
 
                   {/* Content */}
-                  <h2 className="relative font-display text-white text-base md:text-lg font-semibold leading-snug mb-3">
+                  <h2 className="relative font-display text-navy dark:text-white text-base md:text-lg font-semibold leading-snug mb-3">
                     {item.title}
                   </h2>
-                  <p className="relative font-body text-white/45 text-xs leading-relaxed flex-1">
+                  <p className="relative font-body text-navy/55 dark:text-white/45 text-xs leading-relaxed flex-1">
                     {item.desc}
                   </p>
 

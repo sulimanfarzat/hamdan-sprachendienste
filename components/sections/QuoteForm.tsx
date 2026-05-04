@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, DragEvent, FC, FormEvent, useRef, useState } from "react";
-import { Upload, FileText, X, CheckCircle2, AlertCircle, Loader2, Send, Languages } from "lucide-react";
+import { Upload, FileText, X, CheckCircle2, AlertCircle, Loader2, Send, ArrowRight } from "lucide-react";
 import FadeIn from "../ui/FadeIn";
 import { useLanguage } from "../LanguageProvider";
 
@@ -25,6 +25,7 @@ const interp = (s: string, vars: Record<string, string | number>): string =>
 const QuoteForm: FC = () => {
   const { dict } = useLanguage();
   const t = dict.quote;
+  const [direction, setDirection] = useState<"de-ar" | "ar-de">("de-ar");
   const [files, setFiles] = useState<File[]>([]);
   const [fileError, setFileError] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
@@ -177,24 +178,33 @@ const QuoteForm: FC = () => {
             {/* 2. Sprachen */}
             <span className={sectionLabel}>{t.section2}</span>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
-              <div>
-                <label htmlFor="qf-source" className={labelClass}>
-                  <Languages className="inline w-3 h-3 me-1 -mt-0.5 text-gold" />
-                  {t.sourceLang} <span className="text-gold">*</span>
-                </label>
-                <select id="qf-source" name="sourceLang" required defaultValue="" className={inputClass}>
-                  <option value="" disabled>{t.selectPh}</option>
-                  {t.languages.map((l) => <option key={l} value={l}>{l}</option>)}
-                </select>
-              </div>
-              <div>
-                <label htmlFor="qf-target" className={labelClass}>{t.targetLang} <span className="text-gold">*</span></label>
-                <select id="qf-target" name="targetLang" required defaultValue="" className={inputClass}>
-                  <option value="" disabled>{t.selectPh}</option>
-                  {t.languages.map((l) => <option key={l} value={l}>{l}</option>)}
-                </select>
-              </div>
+            {/* Hidden inputs carry the selected direction */}
+            <input type="hidden" name="sourceLang" value={direction === "de-ar" ? "Deutsch" : "Arabisch"} />
+            <input type="hidden" name="targetLang" value={direction === "de-ar" ? "Arabisch" : "Deutsch"} />
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-8">
+              {(["de-ar", "ar-de"] as const).map((dir) => {
+                const [from, to] = dir === "de-ar"
+                  ? ["Deutsch", "العربية"]
+                  : ["العربية", "Deutsch"];
+                const active = direction === dir;
+                return (
+                  <button
+                    key={dir}
+                    type="button"
+                    onClick={() => setDirection(dir)}
+                    className={`flex-1 flex items-center justify-center gap-3 px-6 py-4 border-2 transition-all duration-300 font-body text-sm font-medium ${
+                      active
+                        ? "border-gold bg-gold/10 text-navy dark:text-white"
+                        : "border-navy/15 dark:border-white/12 text-navy/50 dark:text-white/40 hover:border-gold/40 hover:text-navy dark:hover:text-white"
+                    }`}
+                  >
+                    <span className={`font-display text-base ${active ? "text-navy dark:text-white" : ""}`}>{from}</span>
+                    <ArrowRight className={`w-4 h-4 shrink-0 ${active ? "text-gold" : "text-navy/30 dark:text-white/25"}`} />
+                    <span className={`font-display text-base ${active ? "text-navy dark:text-white" : ""}`}>{to}</span>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">

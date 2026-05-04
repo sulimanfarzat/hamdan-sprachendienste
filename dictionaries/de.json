@@ -47,6 +47,23 @@
       { "title": "Online Dolmetschen",         "desc": "Flexibles Remote-Dolmetschen per Video- und Telefonkonferenz – ortsunabhängig und technisch zuverlässig." }
     ]
   },
+  "highlights": {
+    "label": "Warum uns?",
+    "heading": "Sprachdienstleistung mit Niveau",
+    "subtitle": "Mehr als zwei Jahrzehnte Vertrauen, Präzision und Expertise – für Ihre wichtigsten Dokumente und Termine.",
+    "stats": [
+      { "value": "20+",   "label": "Jahre Erfahrung" },
+      { "value": "50+",   "label": "Sprachen" },
+      { "value": "1000+", "label": "Aufträge" },
+      { "value": "24h",   "label": "Antwortzeit" }
+    ],
+    "features": [
+      { "title": "Vereidigte Übersetzer",  "desc": "Gerichtlich anerkannt – rechtssicher für Behörden und Ämter." },
+      { "title": "DSGVO-konform",          "desc": "Vertraulicher Umgang mit Ihren sensiblen Dokumenten." },
+      { "title": "Persönlich erreichbar",  "desc": "Direkter Kontakt zu erfahrenen Fachübersetzern." },
+      { "title": "Bundesweit tätig",       "desc": "Büros in Dresden & Mannheim, Einsätze in ganz Deutschland." }
+    ]
+  },
   "trust": {
     "label": "Referenzen",
     "heading": "Vertrauen in jeder Sprache",
