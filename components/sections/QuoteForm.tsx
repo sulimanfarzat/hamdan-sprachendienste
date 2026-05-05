@@ -18,6 +18,7 @@ import {
   Send,
   Languages,
 } from "lucide-react";
+import Link from "next/link";
 import FadeIn from "../ui/FadeIn";
 
 type FormState = "idle" | "submitting" | "success" | "error";
@@ -417,9 +418,9 @@ const QuoteForm: FC = () => {
               <span className="font-body text-sm text-navy/70 dark:text-cream/60 leading-relaxed">
                 Ich willige in die Verarbeitung meiner Angaben und die hochgeladenen Unterlagen
                 gemäß der{" "}
-                <a href="/datenschutz" className="text-gold hover:text-gold-light underline underline-offset-2">
+                <Link href="/datenschutz" className="text-gold hover:text-gold-light underline underline-offset-2">
                   Datenschutzerklärung
-                </a>{" "}
+                </Link>{" "}
                 ein. Die Daten werden ausschließlich zur Bearbeitung meiner Anfrage genutzt.
                 <span className="text-gold"> *</span>
               </span>

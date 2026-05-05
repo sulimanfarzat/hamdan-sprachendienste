@@ -126,7 +126,7 @@ export default function UebersetzenPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative">
-              <a
+              <Link
                 href="/angebot"
                 className="inline-flex items-center gap-3 bg-gold text-navy font-body font-semibold px-8 py-4 uppercase tracking-widest text-xs hover:bg-gold-light transition-all duration-300 hover:shadow-[0_8px_32px_rgba(200,169,110,0.4)] hover:-translate-y-0.5"
               >
@@ -134,14 +134,14 @@ export default function UebersetzenPage() {
                 <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
+              </Link>
 
-              <a
+              <Link
                 href="/kontakt"
                 className="inline-flex items-center gap-3 border border-navy/30 dark:border-gold/40 text-navy/70 dark:text-gold/80 px-8 py-4 uppercase tracking-widest text-xs font-body hover:border-navy/70 dark:hover:border-gold hover:text-navy dark:hover:text-gold hover:bg-navy/5 dark:hover:bg-gold/10 transition-all duration-300 hover:-translate-y-0.5"
               >
                 Allgemeine Anfrage
-              </a>
+              </Link>
             </div>
           </div>
         </FadeIn>

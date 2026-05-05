@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import FadeIn from "../../components/ui/FadeIn";
 
 export const metadata: Metadata = {
@@ -96,7 +97,7 @@ export default function AboutPage() {
           </p>
 
           {/* CTA */}
-          <a
+          <Link
             href="/#kontakt"
             className="inline-flex items-center gap-3 bg-gold text-navy font-semibold px-8 py-4 uppercase tracking-wider text-sm hover:bg-gold-light transition-all duration-300 hover:shadow-[0_0_30px_rgba(200,169,110,0.35)]"
           >
@@ -115,7 +116,7 @@ export default function AboutPage() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </Link>
         </FadeIn>
 
       </div>

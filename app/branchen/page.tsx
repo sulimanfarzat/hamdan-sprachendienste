@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Scale, Landmark, Briefcase, Cpu, Heart, GraduationCap, Megaphone, Compass } from "lucide-react";
 import FadeIn from "../../components/ui/FadeIn";
 
@@ -72,7 +73,7 @@ export default function BranchenPage() {
 
         {/* CTA */}
         <FadeIn delay={560}>
-          <a
+          <Link
             href="/#kontakt"
             className="inline-flex items-center gap-3 bg-gold text-navy font-body font-semibold px-8 py-4 uppercase tracking-widest text-xs hover:bg-gold-light transition-all duration-300 hover:shadow-[0_8px_32px_rgba(200,169,110,0.4)] hover:-translate-y-0.5"
           >
@@ -80,7 +81,7 @@ export default function BranchenPage() {
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </a>
+          </Link>
         </FadeIn>
 
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, FormEvent, useState } from "react";
+import Link from "next/link";
 import {
   MapPin,
   Phone,
@@ -191,12 +192,12 @@ const ContactSection: FC = () => {
                 />
                 <span className="font-body text-sm text-navy/70 dark:text-cream/60 leading-relaxed">
                   Ich willige in die Verarbeitung meiner Angaben gemäß der{" "}
-                  <a
+                  <Link
                     href="/datenschutz"
                     className="text-gold hover:text-gold-light underline underline-offset-2"
                   >
                     Datenschutzerklärung
-                  </a>{" "}
+                  </Link>{" "}
                   ein. <span className="text-gold">*</span>
                 </span>
               </label>
