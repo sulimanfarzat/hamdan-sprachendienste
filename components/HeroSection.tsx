@@ -1,6 +1,7 @@
 "use client";
 
 import { FC } from "react";
+import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 /* ── Schwebende Schriftzeichen – Deutsch + Arabisch ────────────────────────
@@ -162,18 +163,18 @@ const HeroSection: FC = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-[fadeSlideUp_0.6s_ease-out_0.65s_forwards]">
-          <a
+          <Link
             href="/#kontakt"
             className="bg-gold text-navy font-body font-semibold px-8 py-4 uppercase tracking-widest text-xs hover:bg-gold-light transition-all duration-300 hover:shadow-[0_8px_32px_rgba(200,169,110,0.5)] hover:-translate-y-0.5"
           >
             Unverbindlich anfragen
-          </a>
-          <a
+          </Link>
+          <Link
             href="/services"
             className="border border-navy/30 dark:border-gold/40 text-navy/70 dark:text-gold/80 px-8 py-4 uppercase tracking-widest text-xs font-body hover:border-navy/70 dark:hover:border-gold hover:text-navy dark:hover:text-gold hover:bg-navy/5 dark:hover:bg-gold/10 transition-all duration-300 hover:-translate-y-0.5"
           >
             Unsere Leistungen
-          </a>
+          </Link>
         </div>
       </div>
 
