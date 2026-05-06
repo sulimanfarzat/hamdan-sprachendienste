@@ -4,7 +4,13 @@ import UebersetzenContent from "./UebersetzenContent";
 export const metadata: Metadata = {
   title: "Arabisch Deutsch Übersetzung – Beglaubigt & Vereidigte Übersetzer",
   description:
-    "Professionelle Arabisch-Deutsch Übersetzungen: beglaubigte Urkundenübersetzung, juristische Fachübersetzung, technische Übersetzungen und Expressübersetzungen – vereidigt und zertifiziert.",
+    "Beglaubigte Arabisch-Deutsch Übersetzungen durch vereidigte Übersetzer: Urkundenübersetzung, juristische und technische Fachübersetzungen sowie Expressübersetzungen.",
+  openGraph: {
+    title: "Arabisch Deutsch Übersetzung – Beglaubigt & Vereidigte Übersetzer",
+    description:
+      "Beglaubigte Arabisch-Deutsch Übersetzungen durch vereidigte Übersetzer: Urkundenübersetzung, Fachübersetzungen und Expressübersetzungen – bundesweit.",
+    url: "https://www.hamdan-sprachendienste.de/uebersetzen",
+  },
   keywords: [
     "Arabisch Deutsch Übersetzung",
     "beglaubigte Übersetzung Arabisch",

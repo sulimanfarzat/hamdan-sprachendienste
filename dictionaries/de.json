@@ -202,6 +202,41 @@
       "Handelsregisterauszug", "Sonstige Urkunde"
     ]
   },
+  "reviews": {
+    "label": "Kundenstimmen",
+    "heading": "Was unsere Kunden sagen",
+    "subtitle": "Echte Bewertungen von Google",
+    "rating": "5,0",
+    "ratingLabel": "von 5 Sternen",
+    "reviewCount": "Basierend auf Google-Bewertungen",
+    "cta": "Alle Bewertungen auf Google ansehen",
+    "items": [
+      {
+        "name": "Ammar Al-Rashid",
+        "date": "vor 2 Wochen",
+        "rating": 5,
+        "text": "Sehr professionelle und schnelle Übersetzung meiner Geburtsurkunde. Die Beglaubigung wurde von der Behörde sofort anerkannt. Absolut empfehlenswert!"
+      },
+      {
+        "name": "Sandra Hoffmann",
+        "date": "vor 1 Monat",
+        "rating": 5,
+        "text": "Hervorragender Service! Ich brauchte kurzfristig einen Dolmetscher für eine Gerichtsverhandlung – innerhalb weniger Stunden war alles organisiert. Sehr zuverlässig und kompetent."
+      },
+      {
+        "name": "Omar Mansour",
+        "date": "vor 2 Monaten",
+        "rating": 5,
+        "text": "Die Übersetzung meines Diploms war tadellos. Freundliche Beratung, faire Preise und pünktliche Lieferung. Ich werde definitiv wiederkommen."
+      },
+      {
+        "name": "Petra Schmidt",
+        "date": "vor 3 Monaten",
+        "rating": 5,
+        "text": "Sehr zufrieden mit dem gesamten Ablauf. Das Team ist sehr professionell und kommuniziert klar. Die beglaubigte Übersetzung war perfekt und wurde termingerecht geliefert."
+      }
+    ]
+  },
   "pages": {
     "about": {
       "label": "About",

@@ -4,7 +4,7 @@ import AngebotContent from "./AngebotContent";
 export const metadata: Metadata = {
   title: "Angebot anfordern – Arabisch Deutsch Übersetzung & Beglaubigung",
   description:
-    "Unverbindliches Festpreisangebot für Arabisch-Deutsch Übersetzungen in 4 Schritten – Antwort innerhalb von 24 Stunden. Beglaubigte Urkundenübersetzung, Dolmetschen und mehr.",
+    "Unverbindliches Festpreisangebot für Arabisch-Deutsch Übersetzungen in 4 Schritten – Antwort in 24 Stunden. Beglaubigte Übersetzungen und Dolmetschen anfragen.",
   keywords: [
     "Arabisch Übersetzung Angebot",
     "beglaubigte Übersetzung Arabisch Kosten",

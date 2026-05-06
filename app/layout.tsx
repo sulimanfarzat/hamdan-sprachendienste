@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     template: "%s | Hamdan Sprachendienste",
   },
   description:
-    "Vereidigter Arabisch-Deutsch Übersetzer und Dolmetscher für Behörden, Gerichte und Unternehmen. Beglaubigte Übersetzungen, Urkundendolmetschen – bundesweit tätig, Büros in Dresden und Mannheim.",
+    "Vereidigter Arabisch-Deutsch Übersetzer und Dolmetscher. Beglaubigte Übersetzungen für Behörden und Gerichte – bundesweit tätig, Büros in Dresden und Mannheim.",
   keywords: [
     "Arabisch Deutsch Übersetzer",
     "Arabisch Deutsch Dolmetscher",
