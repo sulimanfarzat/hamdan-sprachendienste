@@ -3,6 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import logoSrc from "../public/logo.png";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { useLanguage } from "./LanguageProvider";
@@ -58,7 +59,7 @@ const Navbar: FC = () => {
           {/* Logo */}
           <Link href="/" aria-label={t.homeAria} className="shrink-0 mr-2">
             <Image
-              src="/logo.png"
+              src={logoSrc}
               alt="Hamdan Sprachendienste"
               width={44}
               height={44}
@@ -163,7 +164,7 @@ const Navbar: FC = () => {
         </button>
 
         <Link href="/" onClick={() => setMenuOpen(false)} className="mb-10">
-          <Image src="/logo.png" alt="Hamdan Sprachendienste" width={56} height={56} className="object-contain" />
+          <Image src={logoSrc} alt="Hamdan Sprachendienste" width={56} height={56} className="object-contain" />
         </Link>
 
         <ul className="flex flex-col items-center gap-10">
