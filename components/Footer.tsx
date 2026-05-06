@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 import { useLanguage } from "./LanguageProvider";
+import { asset } from "../lib/basePath";
 
 export default function Footer() {
   const { dict } = useLanguage();
@@ -31,7 +32,7 @@ export default function Footer() {
           <div className="flex flex-col gap-5">
             <Link href="/" aria-label={nav.homeAria} className="flex items-center gap-3 group w-fit">
               <Image
-                src="/logo.png"
+                src={asset("/logo.png")}
                 alt="Hamdan Sprachendienste"
                 width={40}
                 height={40}

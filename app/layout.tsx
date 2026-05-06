@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { LanguageProvider } from "../components/LanguageProvider";
+import { asset } from "../lib/basePath";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -89,8 +90,8 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: asset("/logo.png"),
+    apple: asset("/logo.png"),
   },
 };
 
